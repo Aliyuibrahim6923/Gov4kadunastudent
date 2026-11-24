@@ -44,7 +44,7 @@ Row-level security is on with no policies, so the public anon key cannot read or
 3. Deploy. To use a custom domain or subdomain, add it under **Settings > Domains**.
 
 ### 3. Logo
-Add the official APC logo as `assets/apc-logo.png` (see `assets/README.md`). Until it is added, a green-white-blue APC badge is shown.
+The official APC logo is in `assets/apc-logo.png`. To replace it, overwrite that file (if it is ever missing, a green-white-blue APC badge is shown).
 
 ## Local development
 

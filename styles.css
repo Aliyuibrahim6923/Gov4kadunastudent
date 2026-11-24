@@ -1,9 +1,10 @@
 /* Kaduna Student Voice: APC palette (green, white, sky blue, red accent). */
 :root {
-  --apc-green: #008a3e;
-  --apc-green-deep: #006b30;
-  --apc-blue: #0094d9;
-  --apc-red: #d71920;
+  /* Sampled from the official logo (assets/apc-logo.png). */
+  --apc-green: #3aa555;
+  --apc-green-deep: #1d6b34;   /* darker shade for white text on the header */
+  --apc-blue: #5dc4e7;
+  --apc-red: #e12d30;
 
   --bg: #f3f7f4;
   --surface: #ffffff;
@@ -12,15 +13,15 @@
   --ink-2: #44524a;
   --muted: #6b7a71;
   --line: #d5e0d9;
-  --primary: var(--apc-green);
+  --primary: #1f8540;          /* logo green, darkened for 4.5:1 text contrast */
   --primary-ink: #ffffff;
   --primary-soft: #e2f3e8;
-  --accent: var(--apc-blue);
+  --accent: #1a86b5;           /* logo sky blue, darkened for readable links */
   --accent-soft: #e0f2fb;
   --danger: #c1121f;
   --danger-soft: #fde8e9;
   --focus: #0077b6;
-  --bar: var(--apc-green);
+  --bar: #2e9a4b;
   --bar-bad: #c1121f;
   --shadow: 0 1px 2px rgba(16, 40, 24, .06), 0 4px 16px rgba(16, 40, 24, .06);
   --radius: 14px;
@@ -97,17 +98,18 @@ p { margin: 0 0 .75rem; }
 .flagband { display: flex; height: 6px; }
 .flagband span { flex: 1; }
 .flagband span:nth-child(1) { background: var(--apc-green); }
-.flagband span:nth-child(2) { background: #fff; }
+.flagband span:nth-child(2) { background: #fff; border-bottom: 1px solid var(--line); }
 .flagband span:nth-child(3) { background: var(--apc-blue); }
 .topbar {
   background: var(--apc-green-deep);
+  border-bottom: 4px solid var(--apc-red);
   color: #fff;
   padding: 12px 16px;
 }
 .topbar-inner { max-width: 720px; margin: 0 auto; display: flex; align-items: center; gap: 12px; }
 .topbar.wide .topbar-inner { max-width: 1200px; }
 .logo {
-  width: 48px; height: 48px; flex: none; border-radius: 10px; background: #fff;
+  width: 54px; height: 48px; flex: none; border-radius: 8px; background: #fff;
   display: grid; place-items: center; overflow: hidden;
 }
 .logo img { width: 100%; height: 100%; object-fit: contain; }
@@ -121,7 +123,7 @@ p { margin: 0 0 .75rem; }
 .logo-fallback i:nth-child(3) { background: var(--apc-blue); }
 .brand { min-width: 0; }
 .brand b { display: block; font-size: 1.05rem; }
-.brand span { display: block; font-size: .8rem; opacity: .85; }
+.brand > span { display: block; font-size: .8rem; opacity: .85; }
 .topbar .spacer { flex: 1; }
 .theme-btn {
   background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.45);
@@ -279,4 +281,11 @@ footer.site { text-align: center; color: var(--muted); font-size: .8rem; padding
 .toast {
   position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); background: var(--ink); color: var(--bg);
   padding: 10px 16px; border-radius: 10px; font-size: .9rem; z-index: 20;
+}
+
+@media (max-width: 480px) {
+  .brand .hide-sm { display: none; }
+  .brand b { font-size: 1rem; }
+  .brand > span { font-size: .75rem; }
+  .theme-btn { padding: 0 10px; font-size: .8rem; }
 }
