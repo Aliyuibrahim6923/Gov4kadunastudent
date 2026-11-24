@@ -2,7 +2,7 @@
 
 A mobile web app for tertiary students across Kaduna State to give structured feedback on the state administration: what to commend, which shortfalls to fix and where to strengthen. The Directorate of Student Mobilization views the results on a protected dashboard.
 
-- **Landing page:** `/` (the Directorate's commitment, leadership photos and the sponsor's message)
+- **Landing page:** `/` (the Directorate's commitment, the Governor and President, the sponsor below them, and the sponsor's message)
 - **Student form:** `/feedback` (four steps, about 5 minutes, works on a 360 px phone)
 - **Directorate dashboard:** `/dashboard` (admin key required)
 - **Stack:** static HTML/CSS/JS on **Vercel**, two Vercel serverless functions, a **Supabase** Postgres table. No framework and no npm dependencies.
