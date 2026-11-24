@@ -60,6 +60,7 @@ Without `SUPABASE_URL` set, the dev server keeps responses in memory and the adm
 
 ## Day-to-day
 
+- **Partner details** (Prismaforge logo and contacts) are in the "Partner and technical implementer" section of `index.html`; the logo is `assets/partners/prismaforge.jpg`.
 - **Change the landing page text or the sponsor's message:** edit `index.html`. To swap a portrait, replace the file in `assets/people/` (portrait 4:5, about 480 px wide).
 
 - **Change the lists** (institutions, levels, sectors, options): edit `config.js`. The form, dashboard and server validation all read it.
