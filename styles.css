@@ -322,28 +322,30 @@ a.brand { color: #fff; text-decoration: none; }
 /* Leaders row: pulled up over the hero; sponsor in the middle, larger. */
 .l-leaders { padding-top: 0; }
 .leaders {
-  display: grid; grid-template-columns: 1fr 1.35fr 1fr; gap: 12px; align-items: end;
+  display: grid; grid-template-columns: 1fr .72fr 1fr; gap: 12px; align-items: end;
   margin-top: -88px; max-width: 900px; margin-left: auto; margin-right: auto;
 }
-.leader { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: 0 6px 24px rgba(10, 40, 20, .14); }
+.leader { display: flex; flex-direction: column; align-self: stretch; margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: 0 6px 24px rgba(10, 40, 20, .14); }
 .leader img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; background: var(--surface-2); }
-.leader figcaption { padding: 10px 12px 12px; text-align: center; }
+.leader figcaption { flex: 1; padding: 10px 12px 12px; text-align: center; }
 .leader figcaption b { display: block; font-size: .95rem; line-height: 1.25; }
 .leader figcaption span { display: block; font-size: .78rem; color: var(--ink-2); line-height: 1.3; margin-top: 2px; }
-.leader-main { border: 3px solid var(--apc-green); position: relative; }
+.leader-main { align-self: end; border: 2px solid var(--apc-green); position: relative; }
 .leader-main::before {
   content: ""; position: absolute; left: 0; right: 0; top: 0; height: 6px; z-index: 1;
   background: linear-gradient(90deg, var(--apc-green) 33.3%, #fff 33.3% 66.6%, var(--apc-blue) 66.6%);
 }
 .leader-main figcaption { background: var(--primary-soft); }
-.leader-main figcaption b { font-size: 1.05rem; }
+.leader-main figcaption b { font-size: .88rem; }
+.leader-main figcaption span { font-size: .72rem; }
 @media (max-width: 560px) {
   .leaders { gap: 8px; margin-top: -72px; }
   .leader { border-radius: 12px; }
   .leader figcaption { padding: 8px 6px 10px; }
   .leader figcaption b { font-size: .78rem; }
   .leader figcaption span { font-size: .68rem; }
-  .leader-main figcaption b { font-size: .82rem; }
+  .leader-main figcaption b { font-size: .7rem; }
+  .leader-main figcaption span { font-size: .62rem; }
 }
 
 .sponsor-quote {
