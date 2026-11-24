@@ -2,12 +2,15 @@
 
 A mobile web app for tertiary students across Kaduna State to give structured feedback on the state administration: what to commend, which shortfalls to fix and where to strengthen. The Directorate of Student Mobilization views the results on a protected dashboard.
 
-- **Student form:** `/` (four steps, about 5 minutes, works on a 360 px phone)
+- **Landing page:** `/` (the Directorate's commitment, leadership photos and the sponsor's message)
+- **Student form:** `/feedback` (four steps, about 5 minutes, works on a 360 px phone)
 - **Directorate dashboard:** `/dashboard` (admin key required)
 - **Stack:** static HTML/CSS/JS on **Vercel**, two Vercel serverless functions, a **Supabase** Postgres table. No framework and no npm dependencies.
 
 ```
-index.html          student form
+index.html          landing page
+feedback.html       student form
+assets/people/      portraits on the landing page (governor, sponsor, president)
 dashboard.html      Directorate dashboard (filters, charts, comments, CSV)
 config.js           editable lists: institutions, levels, LGAs, sectors, options
 styles.css          APC theme (green, white, sky blue), light and dark
@@ -49,13 +52,15 @@ The official APC logo is in `assets/apc-logo.png`. To replace it, overwrite that
 ## Local development
 
 ```bash
-npm run dev     # http://localhost:3000, dashboard at /dashboard
+npm run dev     # http://localhost:3000, form at /feedback, dashboard at /dashboard
 npm test
 ```
 
 Without `SUPABASE_URL` set, the dev server keeps responses in memory and the admin key is `dev-admin-key`. To use a real database locally, export the three environment variables first.
 
 ## Day-to-day
+
+- **Change the landing page text or the sponsor's message:** edit `index.html`. To swap a portrait, replace the file in `assets/people/` (portrait 4:5, about 480 px wide).
 
 - **Change the lists** (institutions, levels, sectors, options): edit `config.js`. The form, dashboard and server validation all read it.
 - **Rotate the admin key:** change `ADMIN_KEY` in Vercel and redeploy. Existing dashboard sessions stop working.

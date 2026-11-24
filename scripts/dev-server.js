@@ -7,7 +7,7 @@ const path = require('path');
 
 const root = path.resolve(__dirname, '..');
 const port = Number(process.env.PORT) || 3000;
-const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.svg': 'image/svg+xml', '.ico': 'image/x-icon' };
+const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.jpg': 'image/jpeg', '.webp': 'image/webp' };
 const api = { '/api/submit': require('../api/submit.js'), '/api/responses': require('../api/responses.js') };
 
 http.createServer(async (req, res) => {
@@ -16,7 +16,7 @@ http.createServer(async (req, res) => {
   let file = path.join(root, decodeURIComponent(url.pathname));
   if (!file.startsWith(root)) { res.statusCode = 403; return res.end(); }
   if (url.pathname === '/') file = path.join(root, 'index.html');
-  else if (url.pathname === '/dashboard') file = path.join(root, 'dashboard.html');
+  else if (!path.extname(file)) file += '.html'; // clean URLs, like Vercel: /feedback -> feedback.html
   fs.readFile(file, (err, data) => {
     if (err) { res.statusCode = 404; return res.end('Not found'); }
     res.setHeader('Content-Type', TYPES[path.extname(file)] || 'application/octet-stream');

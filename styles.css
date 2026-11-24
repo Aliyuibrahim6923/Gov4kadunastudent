@@ -289,3 +289,101 @@ footer.site { text-align: center; color: var(--muted); font-size: .8rem; padding
   .brand > span { font-size: .75rem; }
   .theme-btn { padding: 0 10px; font-size: .8rem; }
 }
+
+/* ---------- Landing page ---------- */
+a.brand { color: #fff; text-decoration: none; }
+.topbar a.theme-btn { display: inline-flex; align-items: center; text-decoration: none; }
+.nav-cta { background: #fff; color: var(--apc-green-deep) !important; border-color: #fff !important; font-weight: 700; }
+@media (max-width: 480px) { .nav-cta { display: none !important; } }
+
+.l-wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+.l-hero {
+  background:
+    radial-gradient(1200px 400px at 85% -10%, rgba(93, 196, 231, .35), transparent 60%),
+    linear-gradient(160deg, #1d6b34 0%, #17582b 55%, #123f22 100%);
+  color: #fff; padding: 48px 0 112px; text-align: center;
+}
+.l-eyebrow { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; opacity: .85; font-weight: 600; margin-bottom: 14px; }
+.l-hero h1 { font-size: clamp(1.9rem, 6vw, 3.2rem); line-height: 1.12; letter-spacing: -.02em; margin: 0 auto 16px; max-width: 18ch; }
+.l-hero h1 span { color: #9fe0f5; }
+.l-lead { font-size: clamp(1rem, 2.4vw, 1.15rem); max-width: 60ch; margin: 0 auto 24px; opacity: .95; }
+.l-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-light { background: #fff; color: #17582b; }
+.btn-light:hover { background: #f0faf3; }
+.btn-outline-light { background: transparent; color: #fff; border-color: rgba(255,255,255,.6); }
+.btn-outline-light:hover { background: rgba(255,255,255,.08); }
+.l-note { font-size: .82rem; opacity: .8; margin-top: 16px; }
+
+.l-section { padding: 56px 0; }
+.l-alt { background: var(--surface-2); }
+.l-kicker { color: var(--primary); font-weight: 700; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; text-align: center; margin-bottom: 6px; }
+.l-h2 { text-align: center; font-size: clamp(1.4rem, 4vw, 2rem); letter-spacing: -.01em; margin-bottom: 28px; }
+
+/* Leaders row: pulled up over the hero; sponsor in the middle, larger. */
+.l-leaders { padding-top: 0; }
+.leaders {
+  display: grid; grid-template-columns: 1fr 1.35fr 1fr; gap: 12px; align-items: end;
+  margin-top: -88px; max-width: 900px; margin-left: auto; margin-right: auto;
+}
+.leader { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: 0 6px 24px rgba(10, 40, 20, .14); }
+.leader img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; background: var(--surface-2); }
+.leader figcaption { padding: 10px 12px 12px; text-align: center; }
+.leader figcaption b { display: block; font-size: .95rem; line-height: 1.25; }
+.leader figcaption span { display: block; font-size: .78rem; color: var(--ink-2); line-height: 1.3; margin-top: 2px; }
+.leader-main { border: 3px solid var(--apc-green); position: relative; }
+.leader-main::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 6px; z-index: 1;
+  background: linear-gradient(90deg, var(--apc-green) 33.3%, #fff 33.3% 66.6%, var(--apc-blue) 66.6%);
+}
+.leader-main figcaption { background: var(--primary-soft); }
+.leader-main figcaption b { font-size: 1.05rem; }
+@media (max-width: 560px) {
+  .leaders { gap: 8px; margin-top: -72px; }
+  .leader { border-radius: 12px; }
+  .leader figcaption { padding: 8px 6px 10px; }
+  .leader figcaption b { font-size: .78rem; }
+  .leader figcaption span { font-size: .68rem; }
+  .leader-main figcaption b { font-size: .82rem; }
+}
+
+.sponsor-quote {
+  max-width: 760px; margin: 28px auto 0; padding: 24px 22px 20px; position: relative;
+  background: var(--surface); border: 1px solid var(--line); border-left: 5px solid var(--apc-green); border-radius: 14px;
+}
+.sponsor-quote::before {
+  content: "“"; position: absolute; top: -18px; left: 18px; font: 800 64px/1 Georgia, serif; color: var(--apc-blue);
+}
+.sponsor-quote p { font-size: clamp(1.02rem, 2.4vw, 1.2rem); line-height: 1.6; margin: 0 0 14px; }
+.sponsor-quote footer { font-weight: 700; }
+.sponsor-quote footer span { display: block; font-weight: 400; font-size: .85rem; color: var(--ink-2); }
+
+.pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.pillar { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px 20px; }
+.pillar-icon { width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; background: var(--primary-soft); color: var(--primary); margin-bottom: 14px; }
+.pillar h3 { font-size: 1.1rem; margin-bottom: 6px; }
+.pillar p { color: var(--ink-2); margin: 0; }
+
+.steps-list { list-style: none; counter-reset: s; padding: 0; margin: 0 auto; max-width: 760px; display: grid; gap: 12px; }
+.steps-list li {
+  counter-increment: s; display: grid; grid-template-columns: 44px 1fr; column-gap: 14px; align-items: start;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px;
+}
+.steps-list li::before {
+  content: counter(s); grid-row: span 2; width: 44px; height: 44px; border-radius: 50%;
+  display: grid; place-items: center; font-weight: 800; background: var(--primary); color: var(--primary-ink);
+}
+.steps-list b { display: block; }
+.steps-list span { color: var(--ink-2); font-size: .95rem; }
+.facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; max-width: 760px; margin: 24px auto 0; text-align: center; }
+.facts div { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 8px; }
+.facts b { display: block; font-size: clamp(1.6rem, 5vw, 2.2rem); color: var(--primary); letter-spacing: -.02em; }
+.facts span { font-size: .82rem; color: var(--ink-2); }
+
+.l-cta {
+  background: linear-gradient(160deg, #1d6b34, #123f22); color: #fff; text-align: center; padding: 56px 0;
+  border-top: 6px solid var(--apc-red);
+}
+.l-cta h2 { font-size: clamp(1.5rem, 4.5vw, 2.2rem); margin-bottom: 10px; }
+.l-cta p { max-width: 56ch; margin: 0 auto 20px; opacity: .92; }
+.l-cta .l-privacy { font-size: .82rem; opacity: .75; margin: 16px auto 0; }
+.landing footer.site { padding-top: 20px; }

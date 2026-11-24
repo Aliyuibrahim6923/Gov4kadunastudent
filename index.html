@@ -4,598 +4,143 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Kaduna Student Voice</title>
-<meta name="description" content="Tell the Kaduna State Campaign Council what to commend, what to fix and where to strengthen. About 5 minutes.">
-<meta name="theme-color" content="#006b30">
+<meta name="description" content="The Directorate of Student Mobilization wants to hear from every tertiary student in Kaduna State, so we can drive change for students. Share your voice in about 5 minutes.">
+<meta name="theme-color" content="#1d6b34">
 <meta property="og:title" content="Kaduna Student Voice">
-<meta property="og:description" content="Students across Kaduna State: rate the administration and say what you want next. About 5 minutes.">
+<meta property="og:description" content="We want to hear you, so we can drive change for students in Kaduna State. Share your voice in about 5 minutes.">
+<meta property="og:image" content="assets/people/sponsor.jpg">
 <link rel="icon" href="assets/apc-logo.png">
 <link rel="stylesheet" href="styles.css">
 <script>try{var t=localStorage.getItem('ksv-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 </head>
-<body>
+<body class="landing">
 <div class="flagband" aria-hidden="true"><span></span><span></span><span></span></div>
-<header class="topbar">
+<header class="topbar wide">
   <div class="topbar-inner">
     <div class="logo">
       <img src="assets/apc-logo.png" alt="APC logo" onerror="this.replaceWith(document.getElementById('logo-fallback').content.cloneNode(true))">
     </div>
-    <div class="brand">
+    <a class="brand" href="./">
       <b>Kaduna Student Voice</b>
       <span>Directorate of Student Mobilization<span class="hide-sm"> · Campaign Council</span></span>
-    </div>
+    </a>
     <div class="spacer"></div>
+    <a class="theme-btn nav-cta" href="feedback">Take the survey</a>
     <button class="theme-btn" type="button" id="themeBtn" aria-label="Switch light or dark theme">Theme</button>
   </div>
 </header>
 <template id="logo-fallback"><div class="logo-fallback" aria-label="APC"><i></i><i>APC</i><i></i></div></template>
 
-<main>
-  <section class="card hero" id="intro">
-    <span class="pill">Tertiary students · Kaduna State</span>
-    <h1>Your voice on the state administration</h1>
-    <p>Tell us what to commend, what shortfalls to fix and where government should do more for students and young people. It takes about <b>5 minutes</b>.</p>
-    <p class="small muted">Your contact details are kept confidential and seen only by the Directorate. Fields marked <span class="req">*</span> are required.</p>
-  </section>
+<!-- Hero -->
+<section class="l-hero">
+  <div class="l-wrap">
+    <p class="l-eyebrow">Directorate of Student Mobilization · Kaduna State</p>
+    <h1>We want to hear you,<br>so we can <span>drive change</span> for students.</h1>
+    <p class="l-lead">The Directorate is committed to hearing students' views and observations, linking students with opportunities, and finding the best route to student inclusion, now and in the future.</p>
+    <div class="l-actions">
+      <a class="btn btn-light" href="feedback">Share your voice</a>
+      <a class="btn btn-outline-light" href="#commitment">Our commitment</a>
+    </div>
+    <p class="l-note">About 5 minutes · Confidential · For ND, NCE, HND, undergraduate and postgraduate students</p>
+  </div>
+</section>
 
-  <form id="form" class="card" novalidate autocomplete="on">
-    <div class="progress" aria-live="polite">
-      <div class="progress-meta"><span id="stepName">About you</span><span id="stepCount">Step 1 of 4</span></div>
-      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+<!-- Leaders, sponsor in the middle -->
+<section class="l-section l-leaders" aria-labelledby="leadersTitle">
+  <div class="l-wrap">
+    <h2 id="leadersTitle" class="sr-only">Leadership</h2>
+    <div class="leaders">
+      <figure class="leader">
+        <img src="assets/people/governor.jpg" alt="Portrait of the Executive Governor of Kaduna State" width="480" height="600" loading="lazy">
+        <figcaption><b>His Excellency</b><span>Executive Governor, Kaduna State</span></figcaption>
+      </figure>
+      <figure class="leader leader-main">
+        <img src="assets/people/sponsor.jpg" alt="Portrait of Ibrahim Bighkhaleel Suleiman" width="640" height="800">
+        <figcaption><b>Ibrahim Bighkhaleel Suleiman</b><span>Sponsor, Kaduna Student Voice</span></figcaption>
+      </figure>
+      <figure class="leader">
+        <img src="assets/people/president.jpg" alt="Portrait of the President of the Federal Republic of Nigeria" width="480" height="600" loading="lazy">
+        <figcaption><b>His Excellency</b><span>President, Federal Republic of Nigeria</span></figcaption>
+      </figure>
     </div>
 
-    <!-- Honeypot: hidden from people, bots fill it in. -->
-    <div class="sr-only" aria-hidden="true">
-      <label for="website">Website</label>
-      <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+    <blockquote class="sponsor-quote">
+      <p>“Students are not only the leaders of tomorrow; they are partners today. Kaduna Student Voice gives every student, on every campus and in every ward, a direct line to tell us what is working, what is not, and what must come next. We are listening, and we will act on what you tell us.”</p>
+      <footer>Ibrahim Bighkhaleel Suleiman <span>Sponsor, Kaduna Student Voice</span></footer>
+    </blockquote>
+  </div>
+</section>
+
+<!-- Commitment -->
+<section class="l-section" id="commitment" aria-labelledby="commitTitle">
+  <div class="l-wrap">
+    <p class="l-kicker">Our commitment</p>
+    <h2 id="commitTitle" class="l-h2">A strategic, targeted student voice</h2>
+    <div class="pillars">
+      <article class="pillar">
+        <div class="pillar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg>
+        </div>
+        <h3>Hear your views</h3>
+        <p>Your views and observations on education, welfare, security, jobs and more, heard directly and counted, not left to chance.</p>
+      </article>
+      <article class="pillar">
+        <div class="pillar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>
+        </div>
+        <h3>Link you with opportunities</h3>
+        <p>Scholarships, bursaries, NELFUND, skills and ICT training, internships and empowerment programmes, matched to the students who need them.</p>
+      </article>
+      <article class="pillar">
+        <div class="pillar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M6 15l4-4 3 3 5-6"/><path d="M15 8h3v3"/></svg>
+        </div>
+        <h3>Include students, now and next</h3>
+        <p>Find the best route for student inclusion in government, today and in the future, with evidence from every institution, LGA and ward.</p>
+      </article>
     </div>
+  </div>
+</section>
 
-    <!-- STEP 1 -->
-    <section class="step" data-step="1" data-title="About you">
-      <h2>About you</h2>
-      <div class="field" data-f="name">
-        <label for="name">Full name <span class="req">*</span></label>
-        <input type="text" id="name" name="name" autocomplete="name" maxlength="80" placeholder="Surname and first name">
-        <div class="error">Enter your surname and first name.</div>
-      </div>
-      <div class="field" data-f="phone">
-        <label for="phone">Phone number <span class="req">*</span></label>
-        <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" maxlength="22" placeholder="e.g. 08031234567">
-        <div class="error">Enter a valid phone number (10 to 18 digits).</div>
-      </div>
-      <div class="field" data-f="whatsapp">
-        <label for="whatsapp">WhatsApp number</label>
-        <label class="check-inline"><input type="checkbox" id="waSame"> Same as phone number</label>
-        <input type="tel" id="whatsapp" name="whatsapp" inputmode="tel" maxlength="22" placeholder="If different">
-        <div class="error">Enter a valid WhatsApp number or leave it blank.</div>
-      </div>
-      <div class="field" data-f="email">
-        <label for="email">Email address</label>
-        <input type="email" id="email" name="email" autocomplete="email" inputmode="email" maxlength="160">
-        <div class="error">Enter a valid email or leave it blank.</div>
-      </div>
-      <div class="field" data-f="institution">
-        <label for="institution">Institution <span class="req">*</span></label>
-        <select id="institution" name="institution"></select>
-        <input type="text" id="institutionOther" name="institutionOther" class="hidden" maxlength="160" placeholder="Name of your institution" style="margin-top:8px">
-        <div class="error">Choose your institution (or type it under Other).</div>
-      </div>
-      <div class="field" data-f="level">
-        <label for="level">Level / year <span class="req">*</span></label>
-        <select id="level" name="level"></select>
-        <div class="error">Choose your level.</div>
-      </div>
-      <div class="field" data-f="lga">
-        <label for="lga">Home LGA <span class="req">*</span></label>
-        <select id="lga" name="lga"></select>
-        <div class="error">Choose your LGA.</div>
-      </div>
-      <div class="field" data-f="ward">
-        <label for="wardSel">Ward <span class="req">*</span></label>
-        <select id="wardSel" disabled><option value="">Choose your LGA first</option></select>
-        <input type="text" id="wardText" class="hidden" maxlength="80" placeholder="Your ward">
-        <div class="error">Choose your ward.</div>
-      </div>
-      <div class="field" data-f="pu">
-        <label for="puSel">Polling unit</label>
-        <p class="hint">Optional. As printed on your PVC.</p>
-        <select id="puSel" disabled><option value="">Choose your ward first</option></select>
-        <input type="text" id="puText" class="hidden" maxlength="160" placeholder="Your polling unit">
-      </div>
-      <fieldset class="field" data-f="gender">
-        <legend>Gender <span class="req">*</span></legend>
-        <div class="choices" data-radio="gender" data-list="GENDER"></div>
-        <div class="error">Choose one.</div>
-      </fieldset>
-      <fieldset class="field" data-f="age">
-        <legend>Age <span class="req">*</span></legend>
-        <div class="choices" data-radio="age" data-list="AGE"></div>
-        <div class="error">Choose one.</div>
-      </fieldset>
-      <fieldset class="field" data-f="pvc">
-        <legend>Do you have a PVC (Permanent Voter's Card)?</legend>
-        <div class="choices" data-radio="pvc" data-list="PVC"></div>
-      </fieldset>
-    </section>
-
-    <!-- STEP 2 -->
-    <section class="step hidden" data-step="2" data-title="Rate the administration">
-      <h2>Rate the administration</h2>
-      <p class="muted small">1 = very poor, 5 = excellent. Choose “Not sure” if you can't say.</p>
-      <div id="sectorRatings"></div>
-
-      <div class="field" data-f="overall" style="margin-top:16px">
-        <span class="label">Overall, how would you rate the administration for students and young people? <span class="req">*</span></span>
-        <div class="scale no-unsure" data-scale="overall"></div>
-        <div class="scale-legend"><span>Very poor</span><span>Excellent</span></div>
-        <div class="error">Give an overall rating.</div>
-      </div>
-
-      <fieldset class="field">
-        <legend>Have you benefitted from NELFUND (student loan)?</legend>
-        <div class="choices stack" data-radio="nelfund" data-list="NELFUND"></div>
-      </fieldset>
-      <div class="subq hidden" data-show="nelfund=not_applied">
-        <fieldset class="field">
-          <legend>Why have you not applied?</legend>
-          <div class="choices stack" data-radio="nelfundReason" data-list="NELFUND_REASON"></div>
-        </fieldset>
-      </div>
-      <div class="subq hidden" data-show="nelfund=waiting|rejected">
-        <fieldset class="field">
-          <legend>How long have you waited since applying?</legend>
-          <div class="choices" data-radio="nelfundWait" data-list="NELFUND_WAIT"></div>
-        </fieldset>
-        <div class="field">
-          <label for="nelfundIssue">What happened?</label>
-          <textarea id="nelfundIssue" name="nelfundIssue" maxlength="1500" placeholder="e.g. stuck on verification, school not approved"></textarea>
-        </div>
-      </div>
-      <div class="subq hidden" data-show="nelfund=tuition|tuition_upkeep|waiting|rejected">
-        <div class="field">
-          <span class="label">Rate your NELFUND experience</span>
-          <div class="scale no-unsure" data-scale="nelfundRate"></div>
-          <div class="scale-legend"><span>Very poor</span><span>Excellent</span></div>
-        </div>
-      </div>
-
-      <fieldset class="field">
-        <legend>Have you received a Kaduna State scholarship or bursary?</legend>
-        <div class="choices" data-radio="scholarship" data-list="SCHOLARSHIP"></div>
-      </fieldset>
-
-      <fieldset class="field">
-        <legend>Did you apply for any other scholarship and not receive it?</legend>
-        <div class="choices" data-radio="otherSch" data-list="YESNO"></div>
-      </fieldset>
-      <div class="subq hidden" data-show="otherSch=yes">
-        <div class="field">
-          <label for="otherSchName">Name of the scholarship</label>
-          <input type="text" id="otherSchName" name="otherSchName" maxlength="160">
-        </div>
-        <div class="field">
-          <label for="otherSchIssue">What happened?</label>
-          <textarea id="otherSchIssue" name="otherSchIssue" maxlength="1500"></textarea>
-        </div>
-      </div>
-
-      <fieldset class="field">
-        <legend>Have you used the state's free transport service?</legend>
-        <div class="choices" data-radio="transport" data-list="TRANSPORT"></div>
-      </fieldset>
-      <div class="subq hidden" data-show="transport=yes">
-        <div class="field">
-          <span class="label">Rate the free transport service</span>
-          <div class="scale no-unsure" data-scale="transportRate"></div>
-          <div class="scale-legend"><span>Very poor</span><span>Excellent</span></div>
-        </div>
-      </div>
-
-      <fieldset class="field">
-        <legend>Have you taken part in a youth empowerment or skills programme?</legend>
-        <div class="choices" data-radio="empower" data-list="YESNO"></div>
-      </fieldset>
-      <div class="subq hidden" data-show="empower=yes">
-        <div class="field">
-          <label for="empowerName">Which programme?</label>
-          <input type="text" id="empowerName" name="empowerName" maxlength="160">
-        </div>
-      </div>
-    </section>
-
-    <!-- STEP 3 -->
-    <section class="step hidden" data-step="3" data-title="Commend and correct">
-      <h2>Commend and correct</h2>
-      <fieldset class="field">
-        <legend>Which areas would you commend the administration for?</legend>
-        <p class="hint">Choose all that apply.</p>
-        <div class="choices" data-check="commend" data-list="SECTORS"></div>
-      </fieldset>
-      <div class="field">
-        <label for="commendNote">What exactly would you commend?</label>
-        <textarea id="commendNote" name="commendNote" maxlength="1500"></textarea>
-      </div>
-      <fieldset class="field">
-        <legend>Which shortfalls should be rectified?</legend>
-        <p class="hint">Choose all that apply.</p>
-        <div class="choices" data-check="shortfalls" data-list="SECTORS"></div>
-      </fieldset>
-      <div class="field">
-        <label for="shortfallNote">What exactly should be fixed?</label>
-        <textarea id="shortfallNote" name="shortfallNote" maxlength="1500"></textarea>
-      </div>
-    </section>
-
-    <!-- STEP 4 -->
-    <section class="step hidden" data-step="4" data-title="What students want">
-      <h2>What students want</h2>
-      <fieldset class="field">
-        <legend>In the short term, what do you want from government?</legend>
-        <div class="choices stack" data-check="wantShort" data-list="WANT_SHORT"></div>
-      </fieldset>
-      <fieldset class="field">
-        <legend>In the long term, what do you want from government?</legend>
-        <div class="choices stack" data-check="wantLong" data-list="WANT_LONG"></div>
-      </fieldset>
-      <fieldset class="field">
-        <legend>Top three sectors to strengthen in the next term</legend>
-        <p class="hint" id="prioHint">Choose up to 3.</p>
-        <div class="choices" data-check="priorities" data-list="SECTORS" data-max="3"></div>
-      </fieldset>
-      <div class="field">
-        <label for="strengthenNote">How should the administration strengthen these areas?</label>
-        <textarea id="strengthenNote" name="strengthenNote" maxlength="1500"></textarea>
-      </div>
-      <div class="field">
-        <label for="message">Message to the Campaign Council (optional)</label>
-        <textarea id="message" name="message" maxlength="1500"></textarea>
-      </div>
-      <fieldset class="field">
-        <legend>Would you like to volunteer with the Directorate of Student Mobilization?</legend>
-        <div class="choices" data-radio="volunteer" data-list="YESNO"></div>
-      </fieldset>
-      <div class="field consent" data-f="consent">
-        <label class="check-inline" style="align-items:flex-start">
-          <input type="checkbox" id="consent" name="consent" style="margin-top:2px">
-          <span>I agree that my answers and contact details may be stored by the Directorate of Student Mobilization and that I may be contacted about student programmes and campaign activities. <span class="req">*</span></span>
-        </label>
-        <div class="error">You need to agree before submitting.</div>
-      </div>
-    </section>
-
-    <div id="formError" class="alert alert-error hidden" role="alert"></div>
-
-    <div class="actions">
-      <button type="button" class="btn btn-ghost hidden" id="backBtn">Back</button>
-      <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
+<!-- How it works -->
+<section class="l-section l-alt" aria-labelledby="howTitle">
+  <div class="l-wrap">
+    <p class="l-kicker">How it works</p>
+    <h2 id="howTitle" class="l-h2">Four short steps, about 5 minutes</h2>
+    <ol class="steps-list">
+      <li><b>About you</b><span>Your institution, level, LGA, ward and polling unit.</span></li>
+      <li><b>Rate the administration</b><span>13 sectors from education to transport, plus NELFUND, bursaries and free transport.</span></li>
+      <li><b>Commend and correct</b><span>What deserves praise and which shortfalls must be fixed.</span></li>
+      <li><b>What students want</b><span>Your short-term and long-term priorities, and how to strengthen them.</span></li>
+    </ol>
+    <div class="facts">
+      <div><b>13</b><span>tertiary institutions</span></div>
+      <div><b>23</b><span>local government areas</span></div>
+      <div><b>255</b><span>wards on the form</span></div>
     </div>
-  </form>
+  </div>
+</section>
 
-  <section class="card thanks hidden" id="thanks" tabindex="-1">
-    <div class="tick" aria-hidden="true">✓</div>
-    <h2>Thank you! Your voice has been recorded.</h2>
-    <p>Help more students be heard: share this form with your classmates and your departmental WhatsApp groups.</p>
-    <div class="share">
-      <a class="btn btn-wa" id="shareWa" target="_blank" rel="noopener">Share on WhatsApp</a>
-      <button type="button" class="btn btn-ghost" id="shareCopy">Copy link</button>
-    </div>
-  </section>
-</main>
+<!-- Final call to action -->
+<section class="l-cta">
+  <div class="l-wrap">
+    <h2>Your voice. Your future. Kaduna.</h2>
+    <p>Add your voice, then share the link with your classmates and departmental groups. Want to do more? You can sign up to volunteer at the end of the survey.</p>
+    <a class="btn btn-light" href="feedback">Share your voice now</a>
+    <p class="l-privacy">Your contact details are kept confidential and seen only by the Directorate.</p>
+  </div>
+</section>
+
 <footer class="site">Kaduna State Campaign Council · Directorate of Student Mobilization</footer>
 
-<script src="config.js"></script>
 <script>
-(function () {
-  'use strict';
-  var C = window.KSV;
-  var $ = function (s, r) { return (r || document).querySelector(s); };
-  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
-  var form = $('#form');
-  var steps = $$('.step', form);
-  var current = 1;
-  var DRAFT = 'ksv-draft-v1';
-  var WARDS = null;
-  var puCache = {};
-
-  /* ---------- Theme ---------- */
-  $('#themeBtn').addEventListener('click', function () {
-    var root = document.documentElement;
-    var dark = root.getAttribute('data-theme') ? root.getAttribute('data-theme') === 'dark'
-      : matchMedia('(prefers-color-scheme: dark)').matches;
-    var next = dark ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    try { localStorage.setItem('ksv-theme', next); } catch (e) {}
-  });
-
-  /* ---------- Build inputs from config ---------- */
-  function opt(o) { return typeof o === 'string' ? { v: o, l: o } : o; }
-  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
-  function fillSelect(sel, list, placeholder) {
-    sel.innerHTML = '<option value="">' + esc(placeholder) + '</option>' +
-      list.map(function (o) { o = opt(o); return '<option value="' + esc(o.v) + '">' + esc(o.l) + '</option>'; }).join('');
-  }
-  fillSelect($('#institution'), C.INSTITUTIONS.concat(['Other']), 'Choose your institution');
-  fillSelect($('#level'), C.LEVELS, 'Choose your level');
-  fillSelect($('#lga'), C.LGAS.map(function (l) { return { v: l, l: titleCase(l) }; }).concat([C.OUTSIDE_LGA]), 'Choose your LGA');
-
-  function titleCase(s) {
-    return s.toLowerCase().replace(/(^|[\s\/(.-])([a-z])/g, function (m, a, b) { return a + b.toUpperCase(); });
-  }
-
-  $$('[data-radio],[data-check]').forEach(function (box) {
-    var name = box.getAttribute('data-radio') || box.getAttribute('data-check');
-    var type = box.hasAttribute('data-radio') ? 'radio' : 'checkbox';
-    box.innerHTML = C[box.getAttribute('data-list')].map(function (o) {
-      o = opt(o);
-      return '<label class="choice"><input type="' + type + '" name="' + name + '" value="' + esc(o.v) + '"><span>' + esc(o.l) + '</span></label>';
-    }).join('');
-  });
-
-  function scaleHtml(name, unsure) {
-    var h = '';
-    for (var i = 1; i <= 5; i++) h += '<label><input type="radio" name="' + name + '" value="' + i + '" aria-label="' + i + ' of 5"><span>' + i + '</span></label>';
-    if (unsure) h += '<label class="unsure"><input type="radio" name="' + name + '" value="0"><span>Not sure</span></label>';
-    return h;
-  }
-  $('#sectorRatings').innerHTML = C.SECTORS.map(function (s) {
-    return '<div class="rate-row" role="radiogroup" aria-labelledby="rl-' + s.v + '"><span class="rate-label" id="rl-' + s.v + '">' + esc(s.l) + '</span>' +
-      '<div class="scale">' + scaleHtml('r_' + s.v, true) + '</div></div>';
-  }).join('');
-  $$('[data-scale]').forEach(function (el) {
-    el.setAttribute('role', 'radiogroup');
-    el.innerHTML = scaleHtml(el.getAttribute('data-scale'), false);
-  });
-
-  /* ---------- Value helpers ---------- */
-  function radio(name) { var el = form.querySelector('input[name="' + name + '"]:checked'); return el ? el.value : ''; }
-  function checks(name) { return $$('input[name="' + name + '"]:checked', form).map(function (e) { return e.value; }); }
-  function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
-  function digits(s) { return s.replace(/[\s\-().]/g, ''); }
-
-  /* ---------- Conditional questions ---------- */
-  function refreshConditionals() {
-    $$('[data-show]').forEach(function (el) {
-      var parts = el.getAttribute('data-show').split('=');
-      var on = parts[1].split('|').indexOf(radio(parts[0])) !== -1;
-      el.classList.toggle('hidden', !on);
-    });
-    $('#institutionOther').classList.toggle('hidden', val('institution') !== 'Other');
-    // Priorities: max 3
-    var max = C.MAX_PRIORITIES;
-    var picked = checks('priorities').length;
-    $$('input[name="priorities"]').forEach(function (i) { i.disabled = !i.checked && picked >= max; });
-    $('#prioHint').textContent = 'Choose up to ' + max + '. ' + (picked ? picked + ' chosen.' : '');
-  }
-
-  /* ---------- Wards and polling units ---------- */
-  function slug(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
-  function loadWards() {
-    if (WARDS) return Promise.resolve(WARDS);
-    return fetch('data/wards.json').then(function (r) { return r.json(); }).then(function (d) { WARDS = d; return d; });
-  }
-  function loadPU(lga) {
-    if (puCache[lga]) return Promise.resolve(puCache[lga]);
-    return fetch('data/pu/' + slug(lga) + '.json').then(function (r) { return r.json(); })
-      .then(function (d) { puCache[lga] = d; return d; });
-  }
-  function onLga(keepWard, keepPu) {
-    var lga = val('lga');
-    var outside = lga === C.OUTSIDE_LGA;
-    var wardSel = $('#wardSel'), puSel = $('#puSel');
-    $('#wardText').classList.toggle('hidden', !outside);
-    $('#puText').classList.toggle('hidden', !outside);
-    wardSel.classList.toggle('hidden', outside);
-    puSel.classList.toggle('hidden', outside);
-    puSel.disabled = true;
-    fillSelect(puSel, [], 'Choose your ward first');
-    if (!lga || outside) {
-      wardSel.disabled = true;
-      fillSelect(wardSel, [], 'Choose your LGA first');
-      return Promise.resolve();
-    }
-    wardSel.disabled = true;
-    fillSelect(wardSel, [], 'Loading wards…');
-    return loadWards().then(function (w) {
-      fillSelect(wardSel, (w[lga] || []).map(function (x) { return { v: x, l: titleCase(x) }; }), 'Choose your ward');
-      wardSel.disabled = false;
-      if (keepWard) { wardSel.value = keepWard; return onWard(keepPu); }
-    }).catch(function () {
-      // Network trouble: fall back to typing.
-      wardSel.classList.add('hidden'); $('#wardText').classList.remove('hidden');
-      puSel.classList.add('hidden'); $('#puText').classList.remove('hidden');
-    });
-  }
-  function onWard(keepPu) {
-    var lga = val('lga'), ward = $('#wardSel').value, puSel = $('#puSel');
-    puSel.disabled = true;
-    if (!ward) { fillSelect(puSel, [], 'Choose your ward first'); return Promise.resolve(); }
-    fillSelect(puSel, [], 'Loading polling units…');
-    return loadPU(lga).then(function (d) {
-      var list = (d[ward] || []).map(function (p) { return { v: p[0], l: titleCase(p[1]) + ' (' + p[0].slice(-3) + ')' }; });
-      fillSelect(puSel, list.concat([{ v: '__none', l: 'Not sure / not listed' }]), 'Choose your polling unit (optional)');
-      puSel.disabled = false;
-      if (keepPu) puSel.value = keepPu;
-    }).catch(function () { puSel.classList.add('hidden'); $('#puText').classList.remove('hidden'); });
-  }
-  $('#lga').addEventListener('change', function () { onLga(); });
-  $('#wardSel').addEventListener('change', function () { onWard(); });
-
-  $('#waSame').addEventListener('change', function () {
-    var wa = $('#whatsapp');
-    if (this.checked) { wa.value = $('#phone').value; wa.readOnly = true; } else { wa.readOnly = false; }
-  });
-  $('#phone').addEventListener('input', function () { if ($('#waSame').checked) $('#whatsapp').value = this.value; });
-
-  /* ---------- Collect ---------- */
-  function puInfo() {
-    if (val('lga') === C.OUTSIDE_LGA || $('#puSel').classList.contains('hidden')) return { pu: val('puText'), puCode: '' };
-    var sel = $('#puSel'), code = sel.value;
-    if (!code || code === '__none') return { pu: '', puCode: '' };
-    var lga = val('lga'), ward = $('#wardSel').value;
-    var hit = ((puCache[lga] || {})[ward] || []).filter(function (p) { return p[0] === code; })[0];
-    return { pu: hit ? hit[1] : '', puCode: code };
-  }
-  function wardValue() {
-    return $('#wardSel').classList.contains('hidden') ? val('wardText') : $('#wardSel').value;
-  }
-  function collect() {
-    var ratings = {};
-    C.SECTORS.forEach(function (s) { var r = radio('r_' + s.v); ratings[s.v] = r === '' ? null : Number(r); });
-    var p = puInfo();
-    return {
-      website: val('website'),
-      name: val('name'), phone: digits(val('phone')), whatsapp: digits(val('whatsapp')), email: val('email'),
-      institution: val('institution'), institutionOther: val('institutionOther'), level: val('level'),
-      lga: val('lga'), ward: wardValue(), pu: p.pu, puCode: p.puCode,
-      gender: radio('gender'), age: radio('age'), pvc: radio('pvc'),
-      ratings: ratings, overall: Number(radio('overall')) || null,
-      nelfund: radio('nelfund'), nelfundReason: radio('nelfundReason'), nelfundWait: radio('nelfundWait'),
-      nelfundIssue: val('nelfundIssue'), nelfundRate: Number(radio('nelfundRate')) || null,
-      scholarship: radio('scholarship'), otherSch: radio('otherSch'), otherSchName: val('otherSchName'), otherSchIssue: val('otherSchIssue'),
-      transport: radio('transport'), transportRate: Number(radio('transportRate')) || null,
-      empower: radio('empower'), empowerName: val('empowerName'),
-      commend: checks('commend'), commendNote: val('commendNote'),
-      shortfalls: checks('shortfalls'), shortfallNote: val('shortfallNote'),
-      wantShort: checks('wantShort'), wantLong: checks('wantLong'), priorities: checks('priorities'),
-      strengthenNote: val('strengthenNote'), message: val('message'),
-      volunteer: radio('volunteer'), consent: $('#consent').checked
-    };
-  }
-
-  /* ---------- Validation ---------- */
-  var PHONE = /^\+?\d{10,18}$/, EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-  var RULES = {
-    1: {
-      name: function (d) { return d.name.split(/\s+/).filter(Boolean).length >= 2; },
-      phone: function (d) { return PHONE.test(d.phone); },
-      whatsapp: function (d) { return !d.whatsapp || PHONE.test(d.whatsapp); },
-      email: function (d) { return !d.email || EMAIL.test(d.email); },
-      institution: function (d) { return d.institution && (d.institution !== 'Other' || d.institutionOther.length >= 2); },
-      level: function (d) { return !!d.level; },
-      lga: function (d) { return !!d.lga; },
-      ward: function (d) { return d.ward.length >= 2; },
-      gender: function (d) { return !!d.gender; },
-      age: function (d) { return !!d.age; }
-    },
-    2: { overall: function (d) { return d.overall >= 1; } },
-    3: {},
-    4: { consent: function (d) { return d.consent; } }
-  };
-  function validateStep(n, focus) {
-    var d = collect(), firstBad = null;
-    Object.keys(RULES[n]).forEach(function (k) {
-      var ok = RULES[n][k](d);
-      var box = form.querySelector('[data-f="' + k + '"]');
-      if (box) box.classList.toggle('invalid', !ok);
-      if (!ok && !firstBad) firstBad = box;
-    });
-    if (firstBad && focus) {
-      firstBad.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      var f = firstBad.querySelector('input:not([type=hidden]):not(.hidden),select:not(.hidden),textarea');
-      if (f) setTimeout(function () { f.focus({ preventScroll: true }); }, 250);
-    }
-    return !firstBad;
-  }
-  // Clear an error as soon as the field is fixed.
-  form.addEventListener('input', function (e) {
-    var box = e.target.closest('[data-f]');
-    if (box && box.classList.contains('invalid')) validateStep(current, false);
-  });
-
-  /* ---------- Steps ---------- */
-  function show(n) {
-    current = n;
-    steps.forEach(function (s) { s.classList.toggle('hidden', Number(s.getAttribute('data-step')) !== n); });
-    $('#stepName').textContent = steps[n - 1].getAttribute('data-title');
-    $('#stepCount').textContent = 'Step ' + n + ' of ' + steps.length;
-    $('#progressFill').style.width = (n / steps.length * 100) + '%';
-    $('#backBtn').classList.toggle('hidden', n === 1);
-    $('#nextBtn').textContent = n === steps.length ? 'Submit' : 'Next';
-    $('#formError').classList.add('hidden');
-    form.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-  $('#backBtn').addEventListener('click', function () { if (current > 1) show(current - 1); });
-  $('#nextBtn').addEventListener('click', function () {
-    if (!validateStep(current, true)) return;
-    if (current < steps.length) { saveDraft(); show(current + 1); } else submit();
-  });
-
-  /* ---------- Submit ---------- */
-  function submit() {
-    var btn = $('#nextBtn'), err = $('#formError');
-    btn.disabled = true; btn.textContent = 'Submitting…';
-    err.classList.add('hidden');
-    fetch('api/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(collect())
-    }).then(function (r) {
-      return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok || !j.ok) throw j; return j; });
-    }).then(function () {
-      clearDraft();
-      form.classList.add('hidden'); $('#intro').classList.add('hidden');
-      var t = $('#thanks'); t.classList.remove('hidden'); t.focus(); window.scrollTo(0, 0);
-    }).catch(function (j) {
-      var msg = (j && j.fields && j.fields.length)
-        ? 'Some answers need checking: ' + j.fields.join(', ') + '. Go back and correct them, then submit again.'
-        : 'We could not send your response. Check your internet connection and tap Submit again. Your answers are saved.';
-      err.textContent = msg; err.classList.remove('hidden');
-      saveDraft();
-    }).then(function () { btn.disabled = false; btn.textContent = 'Submit'; });
-  }
-
-  /* ---------- Share ---------- */
-  var shareUrl = location.origin + location.pathname.replace(/index\.html$/, '');
-  var shareText = 'I just shared my views on the Kaduna State administration as a student. Add your voice (5 mins): ' + shareUrl;
-  $('#shareWa').href = 'https://wa.me/?text=' + encodeURIComponent(shareText);
-  $('#shareCopy').addEventListener('click', function () {
-    var b = this;
-    (navigator.clipboard ? navigator.clipboard.writeText(shareUrl) : Promise.reject()).then(function () {
-      b.textContent = 'Link copied';
-    }).catch(function () { prompt('Copy this link:', shareUrl); });
-  });
-
-  /* ---------- Draft (this browser only) ---------- */
-  function saveDraft() {
-    try {
-      var d = collect(); delete d.website;
-      d._wardSel = $('#wardSel').value; d._puSel = $('#puSel').value; d._step = current;
-      localStorage.setItem(DRAFT, JSON.stringify(d));
-    } catch (e) {}
-  }
-  function clearDraft() { try { localStorage.removeItem(DRAFT); } catch (e) {} }
-  function restoreDraft() {
-    var d;
-    try { d = JSON.parse(localStorage.getItem(DRAFT) || 'null'); } catch (e) { d = null; }
-    if (!d) return;
-    ['name', 'phone', 'whatsapp', 'email', 'institution', 'institutionOther', 'level', 'lga', 'nelfundIssue', 'otherSchName',
-      'otherSchIssue', 'empowerName', 'commendNote', 'shortfallNote', 'strengthenNote', 'message'].forEach(function (k) {
-      var el = document.getElementById(k); if (el && d[k]) el.value = d[k];
-    });
-    if (d.lga === C.OUTSIDE_LGA) { $('#wardText').value = d.ward || ''; $('#puText').value = d.pu || ''; }
-    ['gender', 'age', 'pvc', 'nelfund', 'nelfundReason', 'nelfundWait', 'scholarship', 'otherSch', 'transport', 'empower', 'volunteer'].forEach(function (k) {
-      if (d[k]) { var el = form.querySelector('input[name="' + k + '"][value="' + d[k] + '"]'); if (el) el.checked = true; }
-    });
-    ['overall', 'nelfundRate', 'transportRate'].forEach(function (k) {
-      if (d[k]) { var el = form.querySelector('input[name="' + k + '"][value="' + d[k] + '"]'); if (el) el.checked = true; }
-    });
-    Object.keys(d.ratings || {}).forEach(function (k) {
-      var v = d.ratings[k]; if (v === null || v === undefined) return;
-      var el = form.querySelector('input[name="r_' + k + '"][value="' + v + '"]'); if (el) el.checked = true;
-    });
-    ['commend', 'shortfalls', 'wantShort', 'wantLong', 'priorities'].forEach(function (k) {
-      (d[k] || []).forEach(function (v) { var el = form.querySelector('input[name="' + k + '"][value="' + v + '"]'); if (el) el.checked = true; });
-    });
-    if (d.lga) onLga(d._wardSel, d._puSel);
-    var banner = $('#formError');
-    banner.className = 'alert alert-info'; banner.textContent = 'We restored the answers you started earlier on this phone.';
-    banner.classList.remove('hidden');
-    setTimeout(function () { banner.className = 'alert alert-error hidden'; }, 6000);
-  }
-
-  form.addEventListener('change', function () { refreshConditionals(); saveDraft(); });
-  restoreDraft();
-  refreshConditionals();
-})();
+document.getElementById('themeBtn').addEventListener('click', function () {
+  var root = document.documentElement;
+  var dark = root.getAttribute('data-theme') ? root.getAttribute('data-theme') === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  var next = dark ? 'light' : 'dark';
+  root.setAttribute('data-theme', next);
+  try { localStorage.setItem('ksv-theme', next); } catch (e) {}
+});
 </script>
 </body>
 </html>
