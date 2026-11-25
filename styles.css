@@ -420,3 +420,19 @@ footer.site a { color: inherit; font-weight: 600; }
 .contact-list li.wide { grid-column: 1 / -1; }
 .contact-list .emails { flex-direction: row !important; flex-wrap: wrap; column-gap: 18px; }
 .contact-list .emails small { flex-basis: 100%; }
+
+/* Consent: the whole statement is one large tap target. */
+.consent { background: transparent; padding: 0; }
+.field > label.consent-label {
+  display: flex; gap: 14px; align-items: flex-start; margin: 0; cursor: pointer;
+  padding: 16px; min-height: 64px; border: 2px solid var(--line); border-radius: 12px;
+  background: var(--surface-2); font-weight: 400; color: var(--ink); line-height: 1.5;
+  -webkit-tap-highlight-color: transparent; user-select: none;
+}
+.consent-label input {
+  flex: none; width: 28px; height: 28px; margin: 0; cursor: pointer; accent-color: var(--primary);
+}
+.consent-label b { font-weight: 700; }
+.consent-label:has(input:checked) { border-color: var(--primary); background: var(--primary-soft); }
+.consent-label:has(input:focus-visible) { outline: 3px solid var(--focus); outline-offset: 2px; }
+.invalid .consent-label { border-color: var(--danger); background: var(--danger-soft); }
