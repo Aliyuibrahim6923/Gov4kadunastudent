@@ -4,14 +4,22 @@ A mobile web app for tertiary students across Kaduna State to give structured fe
 
 - **Landing page:** `/` (the Directorate's commitment, the Governor and President, the sponsor below them, and the sponsor's message)
 - **Student form:** `/feedback` (four steps, about 5 minutes, works on a 360 px phone)
-- **Directorate dashboard:** `/dashboard` (admin key required)
+- **Directorate dashboard:** `/dashboard` (admin key required), with four tabs:
+  - **Overview:** headline figures (net satisfaction, PVC, volunteers, coverage), responses over time, sector ratings, an LGA × sector heatmap, programmes, incentives, demographics.
+  - **Map:** Kaduna's 23 LGAs shaded by responses, ratings, net satisfaction, PVC share, volunteers or any one sector. Click an LGA to see all its wards, including wards with no responses yet.
+  - **Responses:** searchable, sortable, paged data table with quick filters and a full-detail panel for each response (call and WhatsApp links).
+  - **Comments:** every written comment, searchable and filterable by type.
+  Filters (date range, institution, LGA, ward, gender, level) apply to every tab.
 - **Stack:** static HTML/CSS/JS on **Vercel**, two Vercel serverless functions, a **Supabase** Postgres table. No framework and no npm dependencies.
 
 ```
 index.html          landing page
 feedback.html       student form
 assets/people/      portraits on the landing page (governor, sponsor, president)
-dashboard.html      Directorate dashboard (filters, charts, comments, CSV)
+dashboard.html      Directorate dashboard page
+dashboard.js        dashboard logic: filters, charts, map, table (no external libraries)
+dashboard.css       dashboard styles
+data/kaduna-lgas.json  LGA boundaries for the map (geoBoundaries, CC BY 4.0)
 config.js           editable lists: institutions, levels, LGAs, sectors, options
 styles.css          APC theme (green, white, sky blue), light and dark
 data/wards.json     23 LGAs -> 255 wards (from the INEC polling-unit list)
@@ -60,6 +68,7 @@ The official APC logo is in `assets/apc-logo.png`. To replace it, overwrite that
 ```bash
 npm run dev     # http://localhost:3000, form at /feedback, dashboard at /dashboard
 npm test
+npm run demo    # same as dev, preloaded with 400 fake responses to preview the dashboard
 ```
 
 Without `SUPABASE_URL` set, the dev server keeps responses in memory and the admin key is `dev-admin-key`. To use the real database locally, export the environment variables from the table above first.

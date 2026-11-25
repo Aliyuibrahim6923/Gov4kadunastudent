@@ -7,7 +7,12 @@ const path = require('path');
 
 const root = path.resolve(__dirname, '..');
 const port = Number(process.env.PORT) || 3000;
-const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.jpg': 'image/jpeg', '.webp': 'image/webp' };
+const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.jpg': 'image/jpeg', '.webp': 'image/webp', '.geojson': 'application/geo+json' };
+if (process.env.SEED) {
+  const rows = require('./fake-data.js').make(Number(process.env.SEED) || 300);
+  rows.sort((a, b) => a.created_at.localeCompare(b.created_at));
+  require('../lib/store.js').seedMemory(rows);
+}
 const api = { '/api/submit': require('../api/submit.js'), '/api/responses': require('../api/responses.js') };
 
 http.createServer(async (req, res) => {

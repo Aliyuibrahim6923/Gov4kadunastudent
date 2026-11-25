@@ -5,9 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Student Voice Dashboard</title>
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#006b30">
+<meta name="theme-color" content="#1d6b34">
 <link rel="icon" href="assets/apc-logo.png">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="dashboard.css">
 <script>try{var t=localStorage.getItem('ksv-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 </head>
 <body>
@@ -28,7 +29,7 @@
 </header>
 <template id="logo-fallback"><div class="logo-fallback" aria-label="APC"><i></i><i>APC</i><i></i></div></template>
 
-<main class="wide">
+<main class="wide" id="loginWrap">
   <form class="card login" id="login">
     <h2>Directorate access</h2>
     <p class="muted small">Enter the admin key. It is kept only for this browser tab.</p>
@@ -39,346 +40,204 @@
     <div id="loginError" class="alert alert-error hidden" role="alert"></div>
     <button class="btn btn-primary" style="width:100%" type="submit" id="loginBtn">Open dashboard</button>
   </form>
-
-  <div id="app" class="hidden">
-    <div class="filters">
-      <div class="field"><label for="fInst">Institution</label><select id="fInst"></select></div>
-      <div class="field"><label for="fLga">LGA</label><select id="fLga"></select></div>
-      <div class="field"><label for="fWard">Ward</label><select id="fWard" disabled></select></div>
-      <button class="btn btn-ghost" type="button" id="refreshBtn">Refresh</button>
-      <button class="btn btn-ghost" type="button" id="csvCopyBtn">Copy CSV</button>
-      <button class="btn btn-primary" style="flex:0 0 auto" type="button" id="csvDlBtn">Download CSV</button>
-    </div>
-    <p class="small muted" id="loadedAt"></p>
-
-    <div class="tiles" id="tiles"></div>
-
-    <div class="grid two">
-      <section class="card">
-        <div class="panel-head"><h3>Sector ratings (weakest first)</h3><span class="small muted">avg of 5 · red below 2.5</span></div>
-        <div id="pSectors"></div>
-      </section>
-      <section class="card">
-        <div class="panel-head"><h3>Overall rating for students</h3><span class="small muted" id="overallAvg"></span></div>
-        <div id="pOverall"></div>
-        <div class="sub-title">Top priorities for next term</div>
-        <div id="pPriorities"></div>
-      </section>
-
-      <section class="card">
-        <div class="panel-head"><h3>NELFUND</h3></div>
-        <div id="pNelfund"></div>
-        <div class="sub-title">Why students have not applied</div>
-        <div id="pNelfundReason"></div>
-        <div class="sub-title">Waiting time (applied, not received)</div>
-        <div id="pNelfundWait"></div>
-        <div class="sub-title">Other scholarships applied for, not received</div>
-        <div id="pOtherSch"></div>
-      </section>
-      <section class="card">
-        <div class="panel-head"><h3>State programmes</h3></div>
-        <div class="sub-title" style="margin-top:0">Free transport service</div>
-        <div id="pTransport"></div>
-        <div class="sub-title">Kaduna State scholarship or bursary</div>
-        <div id="pScholarship"></div>
-        <div class="sub-title">Empowerment programmes named</div>
-        <div id="pEmpower"></div>
-      </section>
-
-      <section class="card">
-        <div class="panel-head"><h3>What students want</h3></div>
-        <div class="sub-title" style="margin-top:0">Short term</div>
-        <div id="pWantShort"></div>
-        <div class="sub-title">Long term</div>
-        <div id="pWantLong"></div>
-        <div class="sub-title">Incentives requested</div>
-        <div id="pIncentives"></div>
-      </section>
-      <section class="card">
-        <div class="panel-head"><h3>Commend and correct</h3></div>
-        <div class="sub-title" style="margin-top:0">Areas to commend</div>
-        <div id="pCommend"></div>
-        <div class="sub-title">Shortfalls to rectify</div>
-        <div id="pShortfalls"></div>
-      </section>
-
-      <section class="card">
-        <div class="panel-head"><h3>By institution</h3></div>
-        <div id="pInst"></div>
-      </section>
-      <section class="card">
-        <div class="panel-head"><h3>By LGA</h3><span class="small muted" id="lgaCover"></span></div>
-        <div id="pLga"></div>
-      </section>
-      <section class="card">
-        <div class="panel-head"><h3 id="wardTitle">By ward (top 20)</h3></div>
-        <div id="pWard"></div>
-      </section>
-      <section class="card">
-        <div class="panel-head"><h3>Latest comments</h3><span class="small muted">newest 40</span></div>
-        <div class="comments" id="pComments"></div>
-      </section>
-    </div>
-  </div>
 </main>
 
+<div id="app" class="hidden">
+  <nav class="dash-nav" aria-label="Dashboard sections">
+    <div class="dash-nav-inner" role="tablist">
+      <a class="dash-tab" role="tab" href="#overview" data-tab="overview" aria-selected="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+        Overview</a>
+      <a class="dash-tab" role="tab" href="#map" data-tab="map" aria-selected="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg>
+        Map</a>
+      <a class="dash-tab" role="tab" href="#responses" data-tab="responses" aria-selected="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M3 15h18M9 4v16"/></svg>
+        Responses <span class="count" id="countResponses">0</span></a>
+      <a class="dash-tab" role="tab" href="#comments" data-tab="comments" aria-selected="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
+        Comments <span class="count" id="countComments">0</span></a>
+    </div>
+  </nav>
+
+  <main class="wide" style="padding-top:0">
+    <!-- Filters: apply to every tab -->
+    <div class="fbar" id="fbar">
+      <div><label for="fRange">Date</label>
+        <select id="fRange">
+          <option value="all">All time</option><option value="today">Today</option><option value="7">Last 7 days</option>
+          <option value="30">Last 30 days</option><option value="custom">Custom range…</option>
+        </select></div>
+      <div><label for="fInst">Institution</label><select id="fInst"></select></div>
+      <div><label for="fLga">LGA</label><select id="fLga"></select></div>
+      <div><label for="fWard">Ward</label><select id="fWard" disabled></select></div>
+      <div><label for="fGender">Gender</label><select id="fGender"></select></div>
+      <div><label for="fLevel">Level</label><select id="fLevel"></select></div>
+      <div class="custom-dates hidden" id="customDates">
+        <div><label for="fFrom">From</label><input type="date" id="fFrom"></div>
+        <div><label for="fTo">To</label><input type="date" id="fTo"></div>
+      </div>
+    </div>
+    <div class="toolbar">
+      <div class="chips" id="chips"></div>
+      <label class="auto"><input type="checkbox" id="autoRefresh"> Auto-refresh</label>
+      <button class="btn btn-ghost btn-sm" type="button" id="refreshBtn">Refresh</button>
+      <button class="btn btn-primary btn-sm" type="button" id="csvBtn">Download CSV</button>
+    </div>
+    <p class="meta" id="loadedAt"></p>
+
+    <!-- OVERVIEW -->
+    <section class="view active" id="view-overview" role="tabpanel">
+      <div class="kpis" id="kpis"></div>
+      <div class="panels">
+        <section class="panel span-2">
+          <div class="panel-hd"><div><h3>Responses over time</h3><p class="sub" id="tlSub">Daily submissions</p></div></div>
+          <div id="pTimeline"></div>
+        </section>
+        <section class="panel">
+          <h3>Sector ratings</h3><p class="sub">Average out of 5, weakest first · red marks below 2.5</p>
+          <div id="pSectors"></div>
+        </section>
+        <section class="panel">
+          <h3>Overall rating for students</h3><p class="sub" id="overallSub"></p>
+          <div id="pOverall"></div>
+          <div class="sub-title">Top priorities for next term</div>
+          <div id="pPriorities"></div>
+        </section>
+        <section class="panel span-2">
+          <h3>Sector ratings by LGA</h3><p class="sub">Average rating out of 5 for each sector in each LGA (LGAs with most responses first). Hover a cell for the number of ratings.</p>
+          <div class="heat-wrap" id="pHeat"></div>
+          <div class="legend" id="heatLegend"></div>
+        </section>
+        <section class="panel">
+          <h3>NELFUND</h3><p class="sub">Student loan reach and experience</p>
+          <div id="pNelfund"></div>
+          <div class="sub-title">Why students have not applied</div>
+          <div id="pNelfundReason"></div>
+          <div class="sub-title">Waiting time (applied, not received)</div>
+          <div id="pNelfundWait"></div>
+        </section>
+        <section class="panel">
+          <h3>State programmes</h3><p class="sub">Transport, scholarships and empowerment</p>
+          <div class="sub-title" style="margin-top:0">Free transport service</div>
+          <div id="pTransport"></div>
+          <div class="sub-title">Kaduna State scholarship or bursary</div>
+          <div id="pScholarship"></div>
+          <div class="sub-title">Other scholarships applied for, not received</div>
+          <div id="pOtherSch"></div>
+          <div class="sub-title">Empowerment programmes named</div>
+          <div id="pEmpower"></div>
+        </section>
+        <section class="panel">
+          <h3>What students want</h3><p class="sub">Share of respondents choosing each option</p>
+          <div class="sub-title" style="margin-top:0">Incentives requested</div>
+          <div id="pIncentives"></div>
+          <div class="sub-title">Short term</div>
+          <div id="pWantShort"></div>
+          <div class="sub-title">Long term</div>
+          <div id="pWantLong"></div>
+        </section>
+        <section class="panel">
+          <h3>Commend and correct</h3><p class="sub">Areas students praise and shortfalls they want fixed</p>
+          <div class="sub-title" style="margin-top:0">Areas to commend</div>
+          <div id="pCommend"></div>
+          <div class="sub-title">Shortfalls to rectify</div>
+          <div id="pShortfalls"></div>
+        </section>
+        <section class="panel">
+          <h3>Who is responding</h3><p class="sub">Demographics and voter readiness</p>
+          <div class="split">
+            <div><div class="sub-title" style="margin-top:0">Gender</div><div id="pGender"></div></div>
+            <div><div class="sub-title" style="margin-top:0">Age</div><div id="pAge"></div></div>
+          </div>
+          <div class="sub-title">PVC status</div>
+          <div id="pPvc"></div>
+          <div class="sub-title">Level / year</div>
+          <div id="pLevel"></div>
+        </section>
+        <section class="panel">
+          <h3>By institution</h3><p class="sub" id="instSub"></p>
+          <div id="pInst"></div>
+          <div class="sub-title" id="wardTitle">Top wards</div>
+          <div id="pWard"></div>
+        </section>
+      </div>
+    </section>
+
+    <!-- MAP -->
+    <section class="view" id="view-map" role="tabpanel">
+      <div class="map-layout">
+        <section class="panel">
+          <div class="map-controls">
+            <div class="field"><label for="mMetric">Show on map</label>
+              <select id="mMetric">
+                <option value="count">Number of responses</option>
+                <option value="overall">Average overall rating</option>
+                <option value="net">Net satisfaction score</option>
+                <option value="pvc">Share with a PVC</option>
+                <option value="volunteers">Volunteers</option>
+                <option value="sector">Rating for one sector…</option>
+              </select></div>
+            <div class="field hidden" id="mSectorWrap"><label for="mSector">Sector</label><select id="mSector"></select></div>
+          </div>
+          <div id="mapBox"><div class="empty-state">Loading map…</div></div>
+          <div class="legend" id="mapLegend"></div>
+          <p class="map-note">Tap or click an LGA to see its wards and filter the whole dashboard. LGA boundaries: geoBoundaries (CC BY 4.0).</p>
+        </section>
+        <div style="display:grid;gap:16px">
+          <section class="panel" id="wardPanel">
+            <div class="panel-hd"><div><h3 id="wardPanelTitle">Wards</h3><p class="sub" id="wardPanelSub">Select an LGA on the map to see every ward, including wards with no responses yet.</p></div>
+              <button class="btn btn-ghost btn-sm hidden" type="button" id="clearLga">Show all LGAs</button></div>
+            <div class="scroll-y" id="wardTable"></div>
+          </section>
+          <section class="panel">
+            <h3>LGA ranking</h3><p class="sub" id="rankSub"></p>
+            <div class="scroll-y" id="rankTable"></div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESPONSES TABLE -->
+    <section class="view" id="view-responses" role="tabpanel">
+      <div class="tbar">
+        <input type="search" class="search" id="tSearch" placeholder="Search name, phone, institution, ward or comments" aria-label="Search responses">
+        <label class="toggle"><input type="checkbox" id="tVol"> Volunteers</label>
+        <label class="toggle"><input type="checkbox" id="tPvc"> Has PVC</label>
+        <label class="toggle"><input type="checkbox" id="tNotes"> Wrote a comment</label>
+        <label class="toggle"><input type="checkbox" id="tLow"> Rated 1–2</label>
+        <button class="btn btn-ghost btn-sm" type="button" id="tCsv">Export these rows</button>
+      </div>
+      <div class="tbl-wrap"><table class="data" id="dataTable"><thead></thead><tbody></tbody></table></div>
+      <div class="pager" id="pager"></div>
+    </section>
+
+    <!-- COMMENTS -->
+    <section class="view" id="view-comments" role="tabpanel">
+      <div class="tbar">
+        <input type="search" class="search" id="cSearch" placeholder="Search comments" aria-label="Search comments">
+        <select id="cType" class="toggle" aria-label="Comment type" style="padding-right:12px"></select>
+      </div>
+      <p class="meta" id="cMeta"></p>
+      <div class="cfeed" id="cFeed"></div>
+      <div style="text-align:center;margin-top:16px"><button class="btn btn-ghost hidden" type="button" id="cMore">Show more</button></div>
+    </section>
+  </main>
+</div>
+
+<div class="drawer-bg" id="drawerBg"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" aria-hidden="true">
+  <div class="drawer-hd">
+    <button type="button" id="dPrev" aria-label="Previous response">‹</button>
+    <h2 id="drawerTitle">Response</h2>
+    <button type="button" id="dNext" aria-label="Next response">›</button>
+    <button type="button" id="dClose" aria-label="Close">✕</button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+</aside>
+<div class="tip" id="tip" role="tooltip"></div>
+
 <script src="config.js"></script>
-<script>
-(function () {
-  'use strict';
-  var C = window.KSV;
-  var $ = function (s) { return document.querySelector(s); };
-  var KEY_STORE = 'ksv-admin-key';
-  var ALL = [];
-  var FILTERED = [];
-
-  var label = function (list, v) {
-    for (var i = 0; i < list.length; i++) { var o = list[i]; if ((o.v || o) === v) return o.l || o; }
-    return v;
-  };
-  var SECTOR = function (k) { return label(C.SECTORS, k); };
-  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
-  function titleCase(s) { return String(s).toLowerCase().replace(/(^|[\s\/(.-])([a-z])/g, function (m, a, b) { return a + b.toUpperCase(); }); }
-  function pct(n, d) { return d ? Math.round(n / d * 100) + '%' : '–'; }
-  function avg(a) { return a.length ? a.reduce(function (x, y) { return x + y; }, 0) / a.length : null; }
-
-  /* ---------- Theme ---------- */
-  $('#themeBtn').addEventListener('click', function () {
-    var root = document.documentElement;
-    var dark = root.getAttribute('data-theme') ? root.getAttribute('data-theme') === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-    var next = dark ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    try { localStorage.setItem('ksv-theme', next); } catch (e) {}
-  });
-
-  /* ---------- Auth + load ---------- */
-  function getKey() { try { return sessionStorage.getItem(KEY_STORE) || ''; } catch (e) { return window.__k || ''; } }
-  function setKey(k) { try { sessionStorage.setItem(KEY_STORE, k); } catch (e) { window.__k = k; } }
-  function clearKey() { try { sessionStorage.removeItem(KEY_STORE); } catch (e) {} window.__k = ''; }
-
-  function load(key) {
-    return fetch('api/responses', { headers: { 'x-admin-key': key }, cache: 'no-store' }).then(function (r) {
-      return r.json().catch(function () { return {}; }).then(function (j) {
-        if (r.status === 401) throw new Error('That admin key is not correct. Check it matches ADMIN_KEY in Vercel exactly (capital letters matter).');
-        if (!r.ok || !j.ok) throw new Error(j.error || 'Could not load responses.');
-        return j.rows;
-      });
-    });
-  }
-  function open(rows) {
-    ALL = rows;
-    $('#login').classList.add('hidden');
-    $('#app').classList.remove('hidden');
-    $('#logoutBtn').classList.remove('hidden');
-    $('#loadedAt').textContent = rows.length + ' responses loaded at ' + new Date().toLocaleTimeString();
-    buildFilters();
-    render();
-  }
-  $('#login').addEventListener('submit', function (e) {
-    e.preventDefault();
-    var key = $('#key').value.trim(), btn = $('#loginBtn'), err = $('#loginError');
-    if (!key) return;
-    btn.disabled = true; btn.textContent = 'Checking…'; err.classList.add('hidden');
-    load(key).then(function (rows) { setKey(key); open(rows); })
-      .catch(function (x) { err.textContent = x.message; err.classList.remove('hidden'); })
-      .then(function () { btn.disabled = false; btn.textContent = 'Open dashboard'; });
-  });
-  $('#logoutBtn').addEventListener('click', function () { clearKey(); location.reload(); });
-  $('#refreshBtn').addEventListener('click', function () {
-    var b = this; b.disabled = true; b.textContent = 'Loading…';
-    load(getKey()).then(open).catch(function (x) { toast(x.message); })
-      .then(function () { b.disabled = false; b.textContent = 'Refresh'; });
-  });
-  if (getKey()) load(getKey()).then(open).catch(function () { clearKey(); });
-
-  /* ---------- Filters ---------- */
-  function options(sel, values, all, fmt) {
-    var cur = sel.value;
-    sel.innerHTML = '<option value="">' + all + '</option>' + values.map(function (v) {
-      return '<option value="' + esc(v) + '">' + esc(fmt ? fmt(v) : v) + '</option>';
-    }).join('');
-    if (values.indexOf(cur) !== -1) sel.value = cur;
-  }
-  function uniq(field, rows) {
-    var s = {}; rows.forEach(function (r) { if (r[field]) s[r[field]] = 1; });
-    return Object.keys(s).sort();
-  }
-  function buildFilters() {
-    options($('#fInst'), uniq('institution', ALL), 'All institutions');
-    options($('#fLga'), uniq('lga', ALL), 'All LGAs', titleCase);
-    buildWardFilter();
-  }
-  function buildWardFilter() {
-    var lga = $('#fLga').value, w = $('#fWard');
-    w.disabled = !lga;
-    options(w, lga ? uniq('ward', ALL.filter(function (r) { return r.lga === lga; })) : [], lga ? 'All wards' : 'Choose an LGA first', titleCase);
-  }
-  $('#fInst').addEventListener('change', render);
-  $('#fLga').addEventListener('change', function () { buildWardFilter(); render(); });
-  $('#fWard').addEventListener('change', render);
-
-  /* ---------- Chart helpers ---------- */
-  // items: [{label, value, text, bad}] -> horizontal bars, value relative to max (or given scale).
-  function bars(el, items, opts) {
-    opts = opts || {};
-    if (!items.length) { el.innerHTML = '<div class="empty">No answers yet.</div>'; return; }
-    var max = opts.max || Math.max.apply(null, items.map(function (i) { return i.value; })) || 1;
-    el.innerHTML = '<div class="bars">' + items.map(function (i) {
-      var w = Math.max(0, Math.min(100, i.value / max * 100));
-      return '<div class="bar' + (i.bad ? ' bad' : '') + '" title="' + esc(i.label + ': ' + i.text) + '">' +
-        '<span class="name">' + esc(i.label) + '</span>' +
-        '<span class="track"><span class="fill" style="width:' + w + '%;display:block"></span></span>' +
-        '<span class="val">' + esc(i.text) + '</span></div>';
-    }).join('') + '</div>';
-  }
-  // Count a single-choice field. order: list of {v,l} to fix the order; otherwise sort by count.
-  function countBy(rows, fn) {
-    var m = {};
-    rows.forEach(function (r) {
-      var v = fn(r); if (v === null || v === undefined || v === '') return;
-      (Array.isArray(v) ? v : [v]).forEach(function (x) { m[x] = (m[x] || 0) + 1; });
-    });
-    return m;
-  }
-  function countBars(el, rows, fn, list, opts) {
-    opts = opts || {};
-    var m = countBy(rows, fn), base = opts.base || rows.length;
-    var keys = list ? list.map(function (o) { return o.v || o; }) : Object.keys(m).sort(function (a, b) { return m[b] - m[a]; });
-    if (opts.sortByCount) keys.sort(function (a, b) { return (m[b] || 0) - (m[a] || 0); });
-    if (opts.limit) keys = keys.slice(0, opts.limit);
-    var items = keys.filter(function (k) { return list ? true : m[k]; }).map(function (k) {
-      var n = m[k] || 0;
-      return { label: opts.fmt ? opts.fmt(k) : (list ? label(list, k) : k), value: n, text: n + ' · ' + pct(n, base) };
-    });
-    if (list && !items.some(function (i) { return i.value; })) items = [];
-    bars(el, items);
-  }
-
-  /* ---------- Render ---------- */
-  function render() {
-    var inst = $('#fInst').value, lga = $('#fLga').value, ward = $('#fWard').value;
-    var rows = FILTERED = ALL.filter(function (r) {
-      return (!inst || r.institution === inst) && (!lga || r.lga === lga) && (!ward || r.ward === ward);
-    });
-    var n = rows.length;
-
-    // D2 tiles
-    var overall = avg(rows.map(function (r) { return r.overall; }).filter(Boolean));
-    var pvcYes = rows.filter(function (r) { return r.pvc === 'yes'; }).length;
-    var vols = rows.filter(function (r) { return r.volunteer; }).length;
-    var phones = {}; rows.forEach(function (r) { if (r.phone) phones[r.phone] = 1; });
-    var instCount = uniq('institution', rows).filter(function (i) { return C.INSTITUTIONS.indexOf(i) !== -1; }).length;
-    var lgaCount = uniq('lga', rows).filter(function (l) { return C.LGAS.indexOf(l) !== -1; }).length;
-    var tiles = [
-      ['Responses', n, (inst || lga) ? 'of ' + ALL.length + ' in total' : 'all responses'],
-      ['Average overall rating', overall ? overall.toFixed(2) : '–', 'out of 5'],
-      ['Have a PVC', pct(pvcYes, n), pvcYes + ' students'],
-      ['Volunteers', vols, pct(vols, n) + ' of respondents'],
-      ['Contacts collected', Object.keys(phones).length, 'unique phone numbers'],
-      ['Coverage', instCount + '/' + C.INSTITUTIONS.length, lgaCount + '/' + C.LGAS.length + ' LGAs represented']
-    ];
-    $('#tiles').innerHTML = tiles.map(function (t) {
-      return '<div class="tile"><div class="k">' + t[0] + '</div><div class="v">' + t[1] + '</div><div class="s">' + t[2] + '</div></div>';
-    }).join('');
-
-    // D3 sectors
-    var sectors = C.SECTORS.map(function (s) {
-      var vals = rows.map(function (r) { return r['rate_' + s.v]; }).filter(function (v) { return v >= 1; });
-      var a = avg(vals);
-      return { label: s.l, value: a || 0, text: a ? a.toFixed(2) + ' (' + vals.length + ')' : 'no ratings', bad: a !== null && a < 2.5, has: a !== null };
-    }).sort(function (x, y) { return (x.has ? x.value : 9) - (y.has ? y.value : 9); });
-    bars($('#pSectors'), n ? sectors : [], { max: 5 });
-
-    // D4 overall distribution
-    $('#overallAvg').textContent = overall ? 'avg ' + overall.toFixed(2) : '';
-    var dist = countBy(rows, function (r) { return r.overall; });
-    bars($('#pOverall'), n ? [5, 4, 3, 2, 1].map(function (k) {
-      return { label: k + (k === 5 ? ' · Excellent' : k === 1 ? ' · Very poor' : ''), value: dist[k] || 0, text: (dist[k] || 0) + ' · ' + pct(dist[k] || 0, n), bad: k <= 2 };
-    }) : []);
-    countBars($('#pPriorities'), rows, function (r) { return r.priorities; }, C.SECTORS, { sortByCount: true });
-
-    // D5 NELFUND
-    countBars($('#pNelfund'), rows, function (r) { return r.nelfund; }, C.NELFUND);
-    var notApplied = rows.filter(function (r) { return r.nelfund === 'not_applied'; });
-    countBars($('#pNelfundReason'), notApplied, function (r) { return r.nelfund_reason; }, C.NELFUND_REASON, { sortByCount: true });
-    var pending = rows.filter(function (r) { return r.nelfund === 'waiting' || r.nelfund === 'rejected'; });
-    countBars($('#pNelfundWait'), pending, function (r) { return r.nelfund_wait; }, C.NELFUND_WAIT);
-    var other = rows.filter(function (r) { return r.other_sch === 'yes'; });
-    countBars($('#pOtherSch'), other, function (r) { return r.other_sch_name ? r.other_sch_name.trim().toUpperCase() : 'NAME NOT GIVEN'; }, null, { limit: 10, fmt: titleCase });
-    if (other.length) $('#pOtherSch').insertAdjacentHTML('afterbegin', '<p class="small muted">' + other.length + ' students (' + pct(other.length, n) + ')</p>');
-
-    // D6 programmes
-    countBars($('#pTransport'), rows, function (r) { return r.transport; }, C.TRANSPORT);
-    var tr = avg(rows.map(function (r) { return r.transport_rate; }).filter(Boolean));
-    if (tr) $('#pTransport').insertAdjacentHTML('beforeend', '<p class="small muted" style="margin-top:6px">Average rating from users: <b>' + tr.toFixed(2) + '</b> / 5</p>');
-    countBars($('#pScholarship'), rows, function (r) { return r.scholarship; }, C.SCHOLARSHIP);
-    countBars($('#pEmpower'), rows.filter(function (r) { return r.empower === 'yes'; }),
-      function (r) { return r.empower_name ? r.empower_name.trim().toUpperCase() : 'NAME NOT GIVEN'; }, null, { limit: 10, fmt: titleCase, base: n });
-
-    // D7 wants, commend, shortfalls
-    countBars($('#pWantShort'), rows, function (r) { return r.want_short; }, C.WANT_SHORT, { sortByCount: true });
-    countBars($('#pWantLong'), rows, function (r) { return r.want_long; }, C.WANT_LONG, { sortByCount: true });
-    countBars($('#pIncentives'), rows, function (r) { return r.incentives; }, C.INCENTIVES, { sortByCount: true });
-    countBars($('#pCommend'), rows, function (r) { return r.commend; }, C.SECTORS, { sortByCount: true });
-    countBars($('#pShortfalls'), rows, function (r) { return r.shortfalls; }, C.SECTORS, { sortByCount: true });
-
-    // D8 breakdowns
-    countBars($('#pInst'), rows, function (r) { return r.institution; }, null);
-    countBars($('#pLga'), rows, function (r) { return r.lga; }, null, { fmt: titleCase });
-    $('#lgaCover').textContent = lgaCount + ' of ' + C.LGAS.length + ' LGAs';
-    $('#wardTitle').textContent = lga ? 'Wards in ' + titleCase(lga) : 'By ward (top 20)';
-    countBars($('#pWard'), rows, function (r) { return lga ? r.ward : r.ward + ' · ' + r.lga; }, null, { limit: lga ? 0 : 20, fmt: titleCase });
-
-    // D9 comments
-    var notes = [['commend_note', 'Commend'], ['shortfall_note', 'Fix'], ['strengthen_note', 'Strengthen'], ['message', 'Message'],
-      ['nelfund_issue', 'NELFUND'], ['other_sch_issue', 'Scholarship']];
-    var withText = rows.filter(function (r) { return notes.some(function (k) { return r[k[0]]; }); }).slice(0, 40);
-    $('#pComments').innerHTML = withText.length ? withText.map(function (r) {
-      return '<div class="comment"><div class="who"><b>' + esc(r.name) + '</b> · ' + esc(r.institution) + ' · ' + esc(r.level) + ' · ' +
-        esc(titleCase(r.lga)) + ' · ' + esc(new Date(r.created_at).toLocaleDateString()) + '</div>' +
-        notes.filter(function (k) { return r[k[0]]; }).map(function (k) {
-          return '<p><span class="tag">' + k[1] + '</span>' + esc(r[k[0]]) + '</p>';
-        }).join('') + '</div>';
-    }).join('') : '<div class="empty">No written comments yet.</div>';
-  }
-
-  /* ---------- D11 CSV ---------- */
-  var COLS = ['created_at', 'name', 'phone', 'whatsapp', 'email', 'institution', 'level', 'lga', 'ward', 'pu', 'pu_code', 'gender', 'age', 'pvc', 'overall']
-    .concat(C.SECTORS.map(function (s) { return 'rate_' + s.v; }))
-    .concat(['nelfund', 'nelfund_reason', 'nelfund_wait', 'nelfund_issue', 'nelfund_rate', 'scholarship', 'other_sch', 'other_sch_name', 'other_sch_issue',
-      'transport', 'transport_rate', 'empower', 'empower_name', 'commend', 'commend_note', 'shortfalls', 'shortfall_note', 'want_short', 'want_long',
-      'incentives', 'priorities', 'strengthen_note', 'message', 'volunteer', 'consent']);
-  function cell(v) {
-    if (v === null || v === undefined) return '';
-    if (Array.isArray(v)) v = v.join('; ');
-    v = String(v);
-    // Formula-injection guard: a spreadsheet must not run a value as a formula.
-    if (/^[=+\-@\t\r]/.test(v)) v = "'" + v;
-    return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;
-  }
-  function csv() {
-    return [COLS.join(',')].concat(FILTERED.map(function (r) { return COLS.map(function (c) { return cell(r[c]); }).join(','); })).join('\r\n');
-  }
-  $('#csvCopyBtn').addEventListener('click', function () {
-    var text = csv();
-    (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject()).then(function () {
-      toast(FILTERED.length + ' responses copied as CSV');
-    }).catch(function () { toast('Copy failed: use Download CSV'); });
-  });
-  $('#csvDlBtn').addEventListener('click', function () {
-    var blob = new Blob(['﻿' + csv()], { type: 'text/csv;charset=utf-8' });
-    var a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'kaduna-student-voice-' + new Date().toISOString().slice(0, 10) + '.csv';
-    document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
-  });
-
-  function toast(msg) {
-    var t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; t.setAttribute('role', 'status');
-    document.body.appendChild(t); setTimeout(function () { t.remove(); }, 2600);
-  }
-})();
-</script>
+<script src="dashboard.js"></script>
 </body>
 </html>

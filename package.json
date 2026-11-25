@@ -5,6 +5,7 @@
   "description": "Student feedback form and Directorate dashboard for the Kaduna State Campaign Council.",
   "scripts": {
     "dev": "node scripts/dev-server.js",
+    "demo": "SEED=400 node scripts/dev-server.js",
     "test": "node --test tests/*.test.js",
     "geo": "python3 scripts/build_geo.py"
   },
