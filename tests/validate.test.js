@@ -9,7 +9,7 @@ const good = () => ({
   overall: 3, ratings: { edu: 4, security: 2, roads: null, power: 9 },
   nelfund: 'not_applied', nelfundReason: 'process', nelfundWait: 'gt6', nelfundRate: 5,
   transport: 'yes', transportRate: 4, otherSch: 'no', otherSchName: 'ignored',
-  commend: ['edu', 'bogus'], priorities: ['edu', 'jobs', 'roads', 'health'],
+  commend: ['edu', 'bogus'], incentives: ['internet', 'nelfund_guide', 'made_up'], priorities: ['edu', 'jobs', 'roads', 'health'],
   volunteer: 'yes', consent: true
 });
 
@@ -23,6 +23,7 @@ test('accepts a valid submission and normalises it', () => {
   assert.equal(r.row.nelfund_rate, null, 'rate only kept when applied');
   assert.equal(r.row.other_sch_name, null);
   assert.deepEqual(r.row.commend, ['edu']);
+  assert.deepEqual(r.row.incentives, ['internet', 'nelfund_guide'], 'unknown incentive dropped');
   assert.equal(r.row.priorities.length, 3);
   assert.equal(r.row.volunteer, true);
 });

@@ -64,6 +64,7 @@ create table if not exists public.responses (
   -- Wants and priorities
   want_short      text[] not null default '{}',
   want_long       text[] not null default '{}',
+  incentives      text[] not null default '{}',
   priorities      text[] not null default '{}' check (cardinality(priorities) <= 3),
   strengthen_note text,
   message         text,

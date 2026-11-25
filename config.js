@@ -102,6 +102,15 @@
       OPT('startup', 'Startup funding & support'),
       OPT('business', 'Small business support')
     ],
+    INCENTIVES: [
+      OPT('internet', 'Student internet support'),
+      OPT('transport', 'Transport support'),
+      OPT('skills', 'Skills support'),
+      OPT('job_ready', 'Job readiness'),
+      OPT('internship', 'Internship'),
+      OPT('nelfund_guide', 'NELFUND facilitation and application guide'),
+      OPT('state_scholarship', 'State scholarship programme')
+    ],
     MAX_PRIORITIES: 3,
 
     // Text length caps (characters).

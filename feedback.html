@@ -237,6 +237,11 @@
         <div class="choices stack" data-check="wantLong" data-list="WANT_LONG"></div>
       </fieldset>
       <fieldset class="field">
+        <legend>Which incentives would you like the Directorate to provide?</legend>
+        <p class="hint">Choose all that apply.</p>
+        <div class="choices stack" data-check="incentives" data-list="INCENTIVES"></div>
+      </fieldset>
+      <fieldset class="field">
         <legend>Top three sectors to strengthen in the next term</legend>
         <p class="hint" id="prioHint">Choose up to 3.</p>
         <div class="choices" data-check="priorities" data-list="SECTORS" data-max="3"></div>
@@ -455,7 +460,7 @@
       empower: radio('empower'), empowerName: val('empowerName'),
       commend: checks('commend'), commendNote: val('commendNote'),
       shortfalls: checks('shortfalls'), shortfallNote: val('shortfallNote'),
-      wantShort: checks('wantShort'), wantLong: checks('wantLong'), priorities: checks('priorities'),
+      wantShort: checks('wantShort'), wantLong: checks('wantLong'), incentives: checks('incentives'), priorities: checks('priorities'),
       strengthenNote: val('strengthenNote'), message: val('message'),
       volunteer: radio('volunteer'), consent: $('#consent').checked
     };
@@ -582,7 +587,7 @@
       var v = d.ratings[k]; if (v === null || v === undefined) return;
       var el = form.querySelector('input[name="r_' + k + '"][value="' + v + '"]'); if (el) el.checked = true;
     });
-    ['commend', 'shortfalls', 'wantShort', 'wantLong', 'priorities'].forEach(function (k) {
+    ['commend', 'shortfalls', 'wantShort', 'wantLong', 'incentives', 'priorities'].forEach(function (k) {
       (d[k] || []).forEach(function (v) { var el = form.querySelector('input[name="' + k + '"][value="' + v + '"]'); if (el) el.checked = true; });
     });
     if (d.lga) onLga(d._wardSel, d._puSel);
