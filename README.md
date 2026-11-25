@@ -20,6 +20,7 @@ api/submit.js       POST: validate and store one response
 api/responses.js    GET: all responses, only with the admin key
 lib/                validation, Supabase storage, HTTP helpers
 supabase/schema.sql table, indexes, row-level security, duplicate-phone view
+supabase/functions.sql secret-gated insert/list functions used by the server
 scripts/            local dev server, ward/PU data builder
 tests/              validation tests
 ```
@@ -27,12 +28,14 @@ tests/              validation tests
 ## Setup
 
 ### 1. Supabase
-1. Create a project at supabase.com (the free tier is enough).
-2. Open **SQL Editor**, paste `supabase/schema.sql` and run it.
-3. From **Project Settings > API**, copy the **Project URL** and the **service_role** key.
-   The service role key stays on the server (in Vercel). Never put it in the HTML.
+The live database is the Supabase project **kaduna-student-voice** (London region). It is already set up: `supabase/schema.sql` and `supabase/functions.sql` have been applied.
 
-Row-level security is on with no policies, so the public anon key cannot read or write the table. Only the Vercel functions can.
+For a fresh project: run `supabase/schema.sql`, then `supabase/functions.sql` (replace the placeholder with the SHA-256 of your `KSV_DB_SECRET`, as the file explains), in **SQL Editor**.
+
+How access works:
+- Row-level security is on and the table has no policies, so the public key cannot read or write it directly.
+- The server calls two functions, `ksv_insert` and `ksv_list`. They refuse any call that does not carry `KSV_DB_SECRET`. The database stores only the secret's SHA-256 hash.
+- Supabase's security advisor flags these two functions as callable with the public key. That is intended: without the secret they do nothing.
 
 ### 2. Vercel
 1. Import this GitHub repository in Vercel. Framework preset: **Other**. No build command is needed.
@@ -40,9 +43,12 @@ Row-level security is on with no policies, so the public anon key cannot read or
 
 | Name | Value |
 |---|---|
-| `SUPABASE_URL` | `https://YOUR-PROJECT.supabase.co` |
-| `SUPABASE_SERVICE_ROLE_KEY` | the service_role key |
+| `SUPABASE_URL` | `https://dizxrfjzpftesosqusyr.supabase.co` |
+| `SUPABASE_PUBLISHABLE_KEY` | the project's publishable key (Supabase > Project Settings > API Keys) |
+| `KSV_DB_SECRET` | the server secret (keep private; never in the HTML or the repo) |
 | `ADMIN_KEY` | a long random passphrase for the dashboard |
+
+Alternatively, set `SUPABASE_SERVICE_ROLE_KEY` instead of the publishable key and secret.
 
 3. Deploy. To use a custom domain or subdomain, add it under **Settings > Domains**.
 
@@ -56,7 +62,7 @@ npm run dev     # http://localhost:3000, form at /feedback, dashboard at /dashbo
 npm test
 ```
 
-Without `SUPABASE_URL` set, the dev server keeps responses in memory and the admin key is `dev-admin-key`. To use a real database locally, export the three environment variables first.
+Without `SUPABASE_URL` set, the dev server keeps responses in memory and the admin key is `dev-admin-key`. To use the real database locally, export the environment variables from the table above first.
 
 ## Day-to-day
 

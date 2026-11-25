@@ -61,3 +61,13 @@ test('every config LGA has wards and a polling-unit file', () => {
     assert.ok(fs.existsSync(`${__dirname}/../data/pu/${slug}.json`), slug);
   }
 });
+
+test('store picks the right connection mode', () => {
+  const { execFileSync } = require('child_process');
+  const mode = (env) => execFileSync(process.execPath, ['-e', 'process.stdout.write(require("./lib/store.js").mode)'],
+    { cwd: `${__dirname}/..`, env: { PATH: process.env.PATH, ...env } }).toString();
+  assert.equal(mode({}), 'memory');
+  assert.equal(mode({ SUPABASE_URL: 'https://x.supabase.co', SUPABASE_PUBLISHABLE_KEY: 'sb_publishable_x', KSV_DB_SECRET: 's' }), 'rpc');
+  assert.equal(mode({ SUPABASE_URL: 'https://x.supabase.co', SUPABASE_SERVICE_ROLE_KEY: 'k' }), 'service');
+  assert.equal(mode({ VERCEL: '1' }), 'unconfigured');
+});
