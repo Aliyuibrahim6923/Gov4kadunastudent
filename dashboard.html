@@ -159,7 +159,7 @@
   function load(key) {
     return fetch('api/responses', { headers: { 'x-admin-key': key }, cache: 'no-store' }).then(function (r) {
       return r.json().catch(function () { return {}; }).then(function (j) {
-        if (r.status === 401) throw new Error('That admin key is not correct.');
+        if (r.status === 401) throw new Error('That admin key is not correct. Check it matches ADMIN_KEY in Vercel exactly (capital letters matter).');
         if (!r.ok || !j.ok) throw new Error(j.error || 'Could not load responses.');
         return j.rows;
       });

@@ -3,8 +3,12 @@ const crypto = require('crypto');
 const { list, useMemory } = require('../lib/store.js');
 const { send } = require('../lib/http.js');
 
+// Trimmed so a key pasted with a stray space or newline (in Vercel or the login box) still works.
+const EXPECTED = (process.env.ADMIN_KEY || (useMemory ? 'dev-admin-key' : '')).trim();
+
 function keyMatches(given) {
-  const expected = process.env.ADMIN_KEY || (useMemory ? 'dev-admin-key' : '');
+  const expected = EXPECTED;
+  if (typeof given === 'string') given = given.trim();
   if (!expected || typeof given !== 'string' || !given) return false;
   const a = crypto.createHash('sha256').update(given).digest();
   const b = crypto.createHash('sha256').update(expected).digest();
@@ -15,6 +19,9 @@ module.exports = async function handler(req, res) {
   if (req.method !== 'GET') {
     res.setHeader('Allow', 'GET');
     return send(res, 405, { ok: false, error: 'Method not allowed' });
+  }
+  if (!EXPECTED) {
+    return send(res, 503, { ok: false, error: 'The dashboard is not set up yet: ADMIN_KEY is missing on the server. Add it in Vercel (Settings > Environment Variables), then redeploy.' });
   }
   if (!keyMatches(req.headers['x-admin-key'])) {
     // Small delay to slow down key guessing.
