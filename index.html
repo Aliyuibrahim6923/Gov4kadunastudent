@@ -25,7 +25,12 @@
       <span>Directorate of Student Mobilization<span class="hide-sm"> · Campaign Council</span></span>
     </a>
     <div class="spacer"></div>
-    <a class="theme-btn nav-cta" href="feedback">Take the survey</a>
+    <nav class="top-links" aria-label="Site">
+      <a href="./" aria-current="page">Home</a>
+      <a href="directorate">Directorate</a>
+      <a href="feedback">Take the survey</a>
+    </nav>
+    <a class="theme-btn login-btn" href="dashboard"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span class="lbl-long">Directorate login</span><span class="lbl-short">Login</span></a>
     <button class="theme-btn" type="button" id="themeBtn" aria-label="Switch light or dark theme">Theme</button>
   </div>
 </header>
@@ -121,6 +126,29 @@
   </div>
 </section>
 
+<!-- Directorate (generated list lives on directorate.html) -->
+<section class="l-section l-alt" id="directorate" aria-labelledby="dirTitle">
+  <div class="l-wrap">
+    <p class="l-kicker">The Directorate</p>
+    <h2 id="dirTitle" class="l-h2">Student Mobilisation Directorate</h2>
+    <div class="dir-teaser">
+      <ol class="officers">
+        <li class="officer lead"><span class="avatar" aria-hidden="true">AB</span><span class="o-name">Amina Sani Bello</span><span class="o-role">Director</span></li>
+        <li class="officer"><span class="avatar" aria-hidden="true">BA</span><span class="o-name">Bello Hayatu Aliyu</span><span class="o-role">Deputy Director 1</span></li>
+        <li class="officer"><span class="avatar" aria-hidden="true">UI</span><span class="o-name">Umar Sani Ismail</span><span class="o-role">Deputy Director 2</span></li>
+        <li class="officer"><span class="avatar" aria-hidden="true">IM</span><span class="o-name">Ishaq Alhassan Qauran Mata</span><span class="o-role">Deputy Director 3</span></li>
+        <li class="officer"><span class="avatar" aria-hidden="true">FB</span><span class="o-name">Fauziyya Buhari</span><span class="o-role">Secretary</span></li>
+        <li class="officer"><span class="avatar" aria-hidden="true">IB</span><span class="o-name">Ibrahim Suleiman Bigkhaleel</span><span class="o-role">Vice Secretary 1</span></li>
+        <li class="officer"><span class="avatar" aria-hidden="true">YL</span><span class="o-name">Yusuf Lawal</span><span class="o-role">Vice Secretary 2</span></li>
+      </ol>
+      <div class="dir-teaser-cta">
+        <a class="btn btn-ghost" href="directorate">See all 61 members</a>
+        <a class="btn btn-primary" href="dashboard" style="margin-left:8px"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Directorate login</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Partner and technical implementer -->
 <section class="l-section" id="partner" aria-labelledby="partnerTitle">
   <div class="l-wrap">
@@ -166,7 +194,9 @@
   </div>
 </section>
 
-<footer class="site">Kaduna State Campaign Council · Directorate of Student Mobilization<br><span class="credit">Technical partner: <a href="https://prismaforge.ng" target="_blank" rel="noopener">Prismaforge</a></span></footer>
+<footer class="site">Kaduna State Campaign Council · Directorate of Student Mobilization<br>
+  <span class="foot-links"><a href="./">Home</a> · <a href="directorate">Directorate members</a> · <a href="dashboard">Directorate login</a></span><br>
+  <span class="credit">Technical partner: <a href="https://prismaforge.ng" target="_blank" rel="noopener">Prismaforge</a></span></footer>
 
 <script>
 document.getElementById('themeBtn').addEventListener('click', function () {

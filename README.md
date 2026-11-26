@@ -3,6 +3,7 @@
 A mobile web app for tertiary students across Kaduna State to give structured feedback on the state administration: what to commend, which shortfalls to fix and where to strengthen. The Directorate of Student Mobilization views the results on a protected dashboard.
 
 - **Landing page:** `/` (the Directorate's commitment, the Governor and President, the sponsor below them, and the sponsor's message)
+- **Directorate members:** `/directorate` (principal officers and all members, searchable, printable)
 - **Student form:** `/feedback` (four steps, about 5 minutes, works on a 360 px phone)
 - **Directorate dashboard:** `/dashboard` (admin key required), with four tabs:
   - **Overview:** headline figures (net satisfaction, PVC, volunteers, coverage), responses over time, sector ratings, an LGA × sector heatmap, programmes, incentives, demographics.
@@ -13,7 +14,8 @@ A mobile web app for tertiary students across Kaduna State to give structured fe
 - **Stack:** static HTML/CSS/JS on **Vercel**, two Vercel serverless functions, a **Supabase** Postgres table. No framework and no npm dependencies.
 
 ```
-index.html          landing page
+index.html          landing page (header has a Directorate login link)
+directorate.html    members page, generated from data/directorate.json
 feedback.html       student form
 assets/people/      portraits on the landing page (governor, sponsor, president)
 dashboard.html      Directorate dashboard page
@@ -74,6 +76,8 @@ npm run demo    # same as dev, preloaded with 400 fake responses to preview the 
 Without `SUPABASE_URL` set, the dev server keeps responses in memory and the admin key is `dev-admin-key`. To use the real database locally, export the environment variables from the table above first.
 
 ## Day-to-day
+
+- **Update the Directorate list:** edit `data/directorate.json` (one `[name, position]` per person, in order), then run `python3 scripts/build_directorate.py`. The landing page shows the principal officers; rebuild it by re-adding them if positions change.
 
 - **Partner details** (Prismaforge logo and contacts) are in the "Partner and technical implementer" section of `index.html`; the logo is `assets/partners/prismaforge.jpg`.
 - **Change the landing page text or the sponsor's message:** edit `index.html`. To swap a portrait, replace the file in `assets/people/` (portrait 4:5, about 480 px wide).
