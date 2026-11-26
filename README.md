@@ -1,5 +1,7 @@
 # Kaduna Student Voice
 
+An initiative of **Ibrahim Bighkhaleel Suleiman**, Vice Secretary, Student Matters Directorate, APC Uba/Tinubu Campaign Council.
+
 A mobile web app for tertiary students across Kaduna State to give structured feedback on the state administration: what to commend, which shortfalls to fix and where to strengthen. The Directorate of Student Mobilization views the results on a protected dashboard.
 
 - **Landing page:** `/` (the Directorate's commitment, the Governor and President, the sponsor below them, and the sponsor's message)

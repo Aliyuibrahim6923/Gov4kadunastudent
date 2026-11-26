@@ -505,3 +505,21 @@ footer.site a { color: inherit; font-weight: 600; }
   .print-table td { border: 1px solid #999; padding: 2pt 6pt; }
   .print-table tr:nth-child(even) td { background: #e8f0f8 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
+
+/* ---------- Initiator credit ---------- */
+.l-initiative {
+  display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 4px 6px; align-items: baseline;
+  margin: 18px auto 0; padding: 8px 16px; border-radius: 999px; font-size: .9rem;
+  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.28);
+}
+.l-initiative span { opacity: .85; }
+.l-initiative b { color: #fff; }
+.role-badge {
+  display: inline-block; font-style: normal; font-size: .66rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  background: var(--apc-green); color: #fff; border-radius: 999px; padding: 2px 8px; margin-bottom: 4px;
+}
+.initiative-note { font-size: .9rem; color: var(--ink-2); margin: 0 0 10px; }
+.initiative-note b { color: var(--primary); }
+.officer .o-tag { grid-column: 2; font-size: .75rem; font-weight: 700; color: var(--ink-2); }
+.officer.initiator { border-color: var(--apc-green); background: var(--primary-soft); }
+.foot-init { display: inline-block; max-width: 70ch; margin-bottom: 4px; }

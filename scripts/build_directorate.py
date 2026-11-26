@@ -9,6 +9,7 @@ root = pathlib.Path(__file__).resolve().parent.parent
 people = json.loads((root / 'data' / 'directorate.json').read_text())
 officers = [(i + 1, n, p) for i, (n, p) in enumerate(people) if p != 'Member']
 members = [(i + 1, n, p) for i, (n, p) in enumerate(people) if p == 'Member']
+INITIATOR = 'Ibrahim Bighkhaleel Suleiman'  # shown as the initiator of Kaduna Student Voice
 TITLES = {'hon', 'dr', 'mr', 'mrs', 'barr', 'comrade', 'prof', 'alh', 'engr'}
 
 
@@ -19,10 +20,10 @@ def initials(name):
 
 e = html.escape
 officer_cards = '\n'.join(
-    f'''        <li class="officer{' lead' if p == 'Director' else ''}">
+    f'''        <li class="officer{' lead' if p == 'Director' else ''}{' initiator' if n == INITIATOR else ''}">
           <span class="avatar" aria-hidden="true">{e(initials(n))}</span>
           <span class="o-name">{e(n)}</span>
-          <span class="o-role">{e(p)}</span>
+          <span class="o-role">{e(p)}</span>{'<span class="o-tag">Initiator, Kaduna Student Voice</span>' if n == INITIATOR else ''}
         </li>''' for _, n, p in officers)
 member_items = '\n'.join(
     f'''        <li data-name="{e(n.lower())}"><span class="sn">{sn}</span><span class="avatar sm" aria-hidden="true">{e(initials(n))}</span><span class="m-name">{e(n)}</span></li>'''
@@ -70,6 +71,7 @@ page = f'''<!doctype html>
     <p class="l-eyebrow">APC Uba/Tinubu Campaign Council · Kaduna State</p>
     <h1>Student Mobilisation <span>Directorate</span></h1>
     <p class="l-lead">The team committed to hearing students' views, linking students with opportunities and driving student inclusion across Kaduna State.</p>
+    <p class="l-initiative"><span>Kaduna Student Voice is an initiative of</span> <b>{e(INITIATOR)}</b></p>
     <div class="dir-stats">
       <div><b>{len(people)}</b><span>members in total</span></div>
       <div><b>{len(officers)}</b><span>principal officers</span></div>
@@ -122,6 +124,7 @@ page = f'''<!doctype html>
 </section>
 
 <footer class="site">Kaduna State Campaign Council · Directorate of Student Mobilization<br>
+  <span class="foot-init">Kaduna Student Voice is an initiative of <b>Ibrahim Bighkhaleel Suleiman</b>, Vice Secretary, Student Matters Directorate, APC Uba/Tinubu Campaign Council.</span><br>
   <span class="foot-links"><a href="./">Home</a> · <a href="directorate">Directorate members</a> · <a href="dashboard">Directorate login</a></span><br>
   <span class="credit">Technical partner: <a href="https://prismaforge.ng" target="_blank" rel="noopener">Prismaforge</a></span></footer>
 
